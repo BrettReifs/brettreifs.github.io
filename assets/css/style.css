@@ -111,28 +111,26 @@ body {
     width: 100%;
     height: 100vh;
     min-height: 600px;
-    max-height: 900px;
     display: flex;
     align-items: flex-end;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .hero-bg {
     position: absolute;
     inset: 0;
     z-index: 0;
+    overflow: hidden;
 }
 
 .hero-video {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    object-position: top center;
     z-index: 2;
 }
 
@@ -269,7 +267,7 @@ body {
 }
 
 .carousel-section:first-of-type {
-    margin-top: -4rem;
+    margin-top: -8rem;
     position: relative;
     z-index: 4;
 }
@@ -1107,7 +1105,7 @@ a:focus, button:focus, [tabindex="0"]:focus {
 
 @media (max-width: 768px) {
     .title-card { flex: 0 0 calc(100% / 3 - 6px); min-width: 140px; }
-    .hero-billboard { min-height: 500px; max-height: 700px; }
+    .hero-billboard { min-height: 500px; }
     .hero-title { font-size: clamp(2rem, 6vw, 3rem); }
     .hero-content { padding-bottom: 15%; }
     .carousel-section:first-of-type { margin-top: -2rem; }
