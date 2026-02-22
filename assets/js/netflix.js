@@ -1,6 +1,25 @@
 // assets/js/netflix.js
 // Netflix-style interactivity: navbar scroll, carousel arrows
 
+const TECH_LINKS = {
+    'MCP': 'https://modelcontextprotocol.io',
+    'Excalidraw': 'https://excalidraw.com',
+    'TypeScript': 'https://www.typescriptlang.org',
+    'Spotify': 'https://developer.spotify.com/documentation/web-api',
+    'Suno AI': 'https://suno.com',
+    'VS Code': 'https://code.visualstudio.com',
+    'Remotion': 'https://www.remotion.dev',
+    'CrewAI': 'https://www.crewai.com',
+    'WebSocket': 'https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API',
+    'React': 'https://react.dev',
+    'FastAPI': 'https://fastapi.tiangolo.com',
+    'ChromaDB': 'https://www.trychroma.com',
+    'Next.js': 'https://nextjs.org',
+    'Python': 'https://www.python.org',
+    'FTS5': 'https://www.sqlite.org/fts5.html',
+    'Recharts': 'https://recharts.org'
+};
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- Mobile nav toggle ---
@@ -264,6 +283,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 html += `<a href="${project.videoUrl}" class="modal-sidebar-link" target="_blank" rel="noopener"><i class="fas fa-video"></i> Video</a>`;
             }
             linksEl.innerHTML = html;
+        }
+
+        // Built With / Provenance
+        const existingBuiltWith = document.querySelector('.modal-sidebar-section.modal-built-with');
+        if (existingBuiltWith) existingBuiltWith.remove();
+
+        if (project.tags && project.tags.length > 0) {
+            const builtWithHTML = project.tags
+                .map(tag => {
+                    const url = TECH_LINKS[tag];
+                    if (url) {
+                        return `<a href="${url}" class="modal-sidebar-tech-link" target="_blank" rel="noopener noreferrer">${tag}</a>`;
+                    }
+                    return `<span class="modal-sidebar-tech-tag">${tag}</span>`;
+                })
+                .join('');
+
+            const builtWithSection = document.createElement('div');
+            builtWithSection.className = 'modal-sidebar-section modal-built-with';
+            builtWithSection.innerHTML = `
+                <span class="modal-sidebar-label">Built With:</span>
+                <div class="modal-sidebar-tech-links">${builtWithHTML}</div>
+            `;
+
+            const sidebar = document.querySelector('.modal-sidebar');
+            const linksSection = document.getElementById('modalLinksSection');
+            if (sidebar && linksSection) {
+                sidebar.insertBefore(builtWithSection, linksSection);
+            } else if (sidebar) {
+                sidebar.appendChild(builtWithSection);
+            }
         }
 
         // Media section

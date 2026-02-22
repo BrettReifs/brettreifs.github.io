@@ -975,6 +975,36 @@ body {
 }
 .modal-sidebar-link:hover { color: var(--accent-hover); text-decoration: underline; }
 
+.modal-sidebar-tech-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 0.25rem;
+}
+.modal-sidebar-tech-link {
+    display: inline-block;
+    padding: 3px 8px;
+    background: rgba(229, 9, 20, 0.15);
+    color: var(--accent-color);
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+.modal-sidebar-tech-link:hover {
+    background: rgba(229, 9, 20, 0.3);
+    color: var(--accent-hover);
+}
+.modal-sidebar-tech-tag {
+    display: inline-block;
+    padding: 3px 8px;
+    background: var(--bg-card-hover);
+    color: var(--text-secondary);
+    border-radius: 3px;
+    font-size: 0.75rem;
+}
+
 /* Body scroll lock when modal open */
 body.modal-locked {
     overflow: hidden;
