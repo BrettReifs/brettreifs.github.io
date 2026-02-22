@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title | default: site.title }} | {{ site.title }}</title>
     <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 }}">
+    <meta name="theme-color" content="#141414">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,17 +18,17 @@
 
 </head>
 <body>
-    <div class="container">
-        {% include header.html %}
+    {% include header.html %}
 
-        <main>
-            {{ content }}
-        </main>
+    <main>
+        {{ content }}
+    </main>
 
-        {% include footer.html %}
-    </div>
+    {% include footer.html %}
 
     {% include accessibility_button.html %}
+
+    <script src="{{ '/assets/js/netflix.js' | relative_url }}"></script>
 
     {% if page.custom_js %}
         {% for js_file in page.custom_js %}

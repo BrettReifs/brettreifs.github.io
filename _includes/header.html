@@ -1,31 +1,7 @@
-<header>
-    <h1>{{ site.title | default: "Brett Reif" }}</h1>
-    <p class="hero-tagline">Building the future of agentic AI</p>
-    {% if site.description %}
-    <p class="subtitle">{{ site.description }}</p>
-    {% endif %}
-    <div class="hero-stats">
-        <div class="stat">
-            <span class="stat-number">{{ site.data.projects | where: "published", true | size }}</span>
-            <span class="stat-label">Projects</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
-            <span class="stat-number">{{ site.data.projects | where: "published", true | where: "status", "released" | size }}</span>
-            <span class="stat-label">Shipped</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
-            <span class="stat-number">{{ site.data.projects | where: "published", true | where: "status", "building" | size }}</span>
-            <span class="stat-label">Building</span>
-        </div>
-    </div>
-    <div class="hero-links">
-        <a href="https://github.com/brettreifs" class="hero-link" target="_blank" rel="noopener">
-            <i class="fab fa-github"></i> GitHub
-        </a>
-        <a href="https://linkedin.com/in/brettreif" class="hero-link hero-link--secondary" target="_blank" rel="noopener">
-            <i class="fab fa-linkedin"></i> LinkedIn
-        </a>
-    </div>
-</header>
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="/" class="nav-logo">Brett Reif</a>
+    <ul class="nav-links">
+        <li><a href="https://github.com/brettreifs" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+        <li><a href="https://linkedin.com/in/brettreif" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+    </ul>
+</nav>

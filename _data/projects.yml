@@ -7,6 +7,10 @@
   title: "Excalidraw MCP"
   category: "epic"
   heroIcon: "fas fa-pencil-ruler"
+  featured: true
+  carouselCategories:
+    - "Shipped"
+    - "MCP Tools"
   description: "MCP server that gives AI agents the power to create, edit, and stream hand-drawn diagrams via Excalidraw. The bridge between textual reasoning and visual communication."
   fullDescription: |
     <p>Agents can reason, but they can't draw — until now. Excalidraw MCP exposes the full Excalidraw canvas through the Model Context Protocol, enabling any LLM to sketch architecture diagrams, flowcharts, and wireframes on the fly.</p>
@@ -31,6 +35,10 @@
   title: "MCP App Media"
   category: "feature"
   heroIcon: "fas fa-music"
+  featured: false
+  carouselCategories:
+    - "Shipped"
+    - "MCP Tools"
   description: "MCP server for Spotify DJ control and Suno AI music generation. Give your AI agent a soundtrack."
   fullDescription: |
     <p>Why should agents be limited to text? MCP App Media lets AI agents control Spotify playback and generate music via Suno AI, all through standardized MCP tool calls.</p>
@@ -55,6 +63,9 @@
   title: "Model Modes"
   category: "feature"
   heroIcon: "fas fa-palette"
+  featured: false
+  carouselCategories:
+    - "Shipped"
   description: "VS Code extension providing model-aware visual skins for GPT, Claude, Gemini, and Llama — with a HUD showing active tools."
   fullDescription: |
     <p>When you switch between AI models, your IDE should reflect it. Model Modes transforms your VS Code environment with model-specific themes, color schemes, and a heads-up display showing which tools are active.</p>
@@ -81,6 +92,9 @@
   title: "Content Engine"
   category: "feature"
   heroIcon: "fas fa-video"
+  featured: false
+  carouselCategories:
+    - "AI Agents"
   description: "Automated pipeline that turns GitHub activity into polished video content and social posts via Remotion — the meta-project that promotes itself."
   fullDescription: |
     <p>Content Engine monitors your GitHub repos and automatically generates scripts, renders animated explainer videos with Remotion, and publishes to LinkedIn, Twitter, and YouTube.</p>
@@ -105,6 +119,10 @@
   title: "Agent Sentinel"
   category: "epic"
   heroIcon: "fas fa-shield-alt"
+  featured: false
+  carouselCategories:
+    - "MCP Tools"
+    - "AI Agents"
   description: "Governance framework that monitors AI agents for policy violations, prompt injection, secret leakage, and cost overruns. The security guard for your AI fleet."
   fullDescription: |
     <p>As agents gain more autonomy, someone needs to watch the watchers. Agent Sentinel provides enterprise-grade governance infrastructure with audit trails, policy enforcement, and kill switches.</p>
@@ -129,6 +147,9 @@
   title: "Agentic Philosophers"
   category: "feature"
   heroIcon: "fas fa-comments"
+  featured: false
+  carouselCategories:
+    - "AI Agents"
   description: "Multi-agent debate system with Researcher, Critic, Synthesizer, and Devil's Advocate agents collaborating in real-time via WebSocket."
   fullDescription: |
     <p>Four specialized AI agents debate any topic through structured rounds, with a live React UI streaming the conversation. The perfect testbed for multi-agent orchestration.</p>
@@ -153,6 +174,10 @@
   title: "Agent Lens"
   category: "feature"
   heroIcon: "fas fa-chart-line"
+  featured: false
+  carouselCategories:
+    - "MCP Tools"
+    - "AI Agents"
   description: "Drop-in observability for MCP agents — tracks runs, tool calls, tokens, cost, and latency. Datadog for AI agents."
   fullDescription: |
     <p>You can't improve what you can't measure. Agent Lens is a TypeScript monorepo that instruments any MCP agent with zero-config observability.</p>
@@ -177,6 +202,9 @@
   title: "Model Router"
   category: "feature"
   heroIcon: "fas fa-random"
+  featured: false
+  carouselCategories:
+    - "AI Agents"
   description: "Dynamic LLM orchestrator that routes tasks to Claude, GPT, Gemini, or Ollama based on cost, quality, and latency strategies."
   fullDescription: |
     <p>No single model is best at everything. Model Router brings the load-balancer pattern to AI — selecting the optimal model for each request with automatic fallback chains.</p>
@@ -201,6 +229,9 @@
   title: "PM Agent"
   category: "mini"
   heroIcon: "fas fa-tasks"
+  featured: false
+  carouselCategories:
+    - "AI Agents"
   description: "AI product manager that analyzes GitHub issues, clusters themes, generates user stories, and writes release notes."
   fullDescription: |
     <p>Product managers spend too much time on document formatting. PM Agent automates the mechanical parts so humans can focus on strategy and empathy.</p>
@@ -225,6 +256,9 @@
   title: "Ideas Agent"
   category: "mini"
   heroIcon: "fas fa-lightbulb"
+  featured: false
+  carouselCategories:
+    - "AI Agents"
   description: "RAG-powered second brain that ingests your markdown notes, finds hidden connections, and answers questions conversationally."
   fullDescription: |
     <p>Great ideas rarely arrive fully formed. Ideas Agent acts as an always-on thought partner that surfaces connections between your notes you didn't know existed.</p>
@@ -249,6 +283,9 @@
   title: "Agent Academy"
   category: "mini"
   heroIcon: "fas fa-graduation-cap"
+  featured: false
+  carouselCategories:
+    - "AI Agents"
   description: "Agent registry and marketplace — discover, compose, and invoke AI agents via AGENTS.md. The npm for agents."
   fullDescription: |
     <p>The gap between building an agent and making it discoverable is enormous. Agent Academy provides the registry, search, and composition layer the ecosystem needs.</p>

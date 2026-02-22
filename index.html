@@ -3,107 +3,178 @@ layout: default
 title: Home
 ---
 
-<!-- Filter Bar -->
-<div class="filter-bar" role="toolbar" aria-label="Filter projects">
-    <button class="filter-btn active" data-filter="all">All Projects</button>
-    <button class="filter-btn" data-filter="released"><i class="fas fa-check-circle"></i> Shipped</button>
-    <button class="filter-btn" data-filter="building"><i class="fas fa-hammer"></i> Building</button>
-</div>
+{% assign published = site.data.projects | where: "published", true %}
+{% assign featured = published | where: "featured", true | first %}
+{% assign gradient_classes = "card-grad-1|card-grad-2|card-grad-3|card-grad-4|card-grad-5|card-grad-6|card-grad-7|card-grad-8" | split: "|" %}
 
-<!-- Product Grid -->
-<div class="bento-grid" id="projectGrid">
-    {% assign published_projects = site.data.projects | where: "published", true %}
-    {% assign gradient_classes = "card-gradient-1|card-gradient-2|card-gradient-3|card-gradient-4|card-gradient-5|card-gradient-6|card-gradient-7|card-gradient-8" | split: "|" %}
-    {% assign hero_icons = "fas fa-pencil-ruler|fas fa-music|fas fa-palette|fas fa-video|fas fa-shield-alt|fas fa-comments|fas fa-chart-line|fas fa-random|fas fa-tasks|fas fa-lightbulb|fas fa-graduation-cap" | split: "|" %}
-
-    {% if published_projects.size > 0 %}
-        {% for project in published_projects %}
-            {% assign gradient_index = forloop.index0 | modulo: gradient_classes.size %}
-            {% assign gradient_class = gradient_classes[gradient_index] %}
-            {% assign icon_index = forloop.index0 | modulo: hero_icons.size %}
-            {% assign hero_icon = hero_icons[icon_index] %}
-
-            {% assign size_class = "feature" %}
-            {% if project.category == "epic" %}
-                {% assign size_class = "epic" %}
-            {% endif %}
-
-            {% assign project_url = "/project.html?id=" | append: project.id | relative_url %}
-
-            <a href="{{ project_url }}" class="card {{ size_class }} {{ gradient_class }}" tabindex="0" aria-labelledby="card-title-{{ project.id }}" data-status="{{ project.status | default: 'building' }}">
-                <span id="card-title-{{ project.id }}" class="sr-only">{{ project.title }}</span>
-                <div class="card-hero">
-                    <div class="card-hero-bg"></div>
-                    {% if project.image and project.image != "" %}
-                        <img src="{{ project.image }}" alt="{{ project.title }}" loading="lazy">
-                    {% else %}
-                        <i class="{{ project.heroIcon | default: hero_icon }} card-hero-icon" aria-hidden="true"></i>
-                    {% endif %}
-                </div>
-                <div class="card-content">
-                    <div class="card-header-row">
-                        {% if project.tags and project.tags.size > 0 %}
-                        <div class="card-tags">
-                            {% for tag in project.tags limit:3 %}
-                                <span class="card-tag">{{ tag }}</span>
-                            {% endfor %}
-                        </div>
-                        {% endif %}
-                        {% if project.status == "released" %}
-                            <span class="status-pill status-released"><i class="fas fa-check-circle"></i> Shipped</span>
-                        {% else %}
-                            <span class="status-pill status-building"><i class="fas fa-hammer"></i> Building</span>
-                        {% endif %}
-                    </div>
-                    <h2 class="card-title">{{ project.title }}</h2>
-                    {% if project.description %}
-                        <p class="card-description">{{ project.description | strip_html | normalize_whitespace | truncate: 160 }}</p>
-                    {% endif %}
-                </div>
-                <div class="card-footer">
-                    <span class="card-link" aria-hidden="true">
-                        View Project <i class="fas fa-arrow-right"></i>
-                    </span>
-                    <div class="card-meta">
-                        {% if project.githubUrl %}<span><i class="fab fa-github" aria-hidden="true"></i></span>{% endif %}
-                    </div>
-                </div>
-            </a>
-        {% endfor %}
-    {% else %}
-        <div class="empty-state">
-            <i class="fas fa-folder-open" aria-hidden="true"></i>
-            <h3>No Projects Yet</h3>
-            <p>Check back soon for exciting new projects!</p>
+<!-- ===== HERO BILLBOARD ===== -->
+{% if featured %}
+{% assign feat_grad_idx = 0 %}
+<section class="hero-billboard" aria-label="Featured project">
+    <div class="hero-bg">
+        <div class="hero-bg-gradient" style="background: var(--gradient-1);"></div>
+        <i class="{{ featured.heroIcon }} hero-bg-icon" aria-hidden="true"></i>
+    </div>
+    <div class="hero-content">
+        <div class="hero-badge">
+            <i class="fas fa-star" aria-hidden="true"></i> Featured Project
         </div>
-    {% endif %}
-</div>
+        <h1 class="hero-title">{{ featured.title }}</h1>
+        <p class="hero-description">{{ featured.description }}</p>
+        {% if featured.tags and featured.tags.size > 0 %}
+        <div class="hero-tags">
+            {% for tag in featured.tags %}
+                <span class="hero-tag">{{ tag }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="hero-buttons">
+            <a href="{{ '/project.html?id=' | append: featured.id | relative_url }}" class="btn-hero btn-hero-primary">
+                <i class="fas fa-play" aria-hidden="true"></i> Explore Project
+            </a>
+            {% if featured.githubUrl %}
+            <a href="{{ featured.githubUrl }}" class="btn-hero btn-hero-secondary" target="_blank" rel="noopener">
+                <i class="fab fa-github" aria-hidden="true"></i> View on GitHub
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endif %}
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('.card');
+<!-- ===== CAROUSEL: SHIPPED ===== -->
+{% assign shipped = published | where: "status", "released" %}
+{% if shipped.size > 0 %}
+<section class="carousel-section" aria-label="Shipped projects">
+    <h2 class="carousel-title">Shipped</h2>
+    <div class="carousel-wrapper">
+        <button class="carousel-arrow carousel-arrow--left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+        <div class="carousel-track">
+            {% for project in shipped %}
+                {% assign g_idx = forloop.index0 | modulo: gradient_classes.size %}
+                {% assign g_class = gradient_classes[g_idx] %}
+                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="title-card {{ g_class }}" aria-label="{{ project.title }}">
+                    <div class="title-card-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
+                    <div class="title-card-info">
+                        <div class="title-card-title">{{ project.title }}</div>
+                        <div class="title-card-meta">
+                            <span class="title-card-status shipped">Shipped</span>
+                            <span class="title-card-tags">{{ project.tags | join: " · " }}</span>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <button class="carousel-arrow carousel-arrow--right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</section>
+{% endif %}
 
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const filter = btn.dataset.filter;
+<!-- ===== CAROUSEL: MCP TOOLS ===== -->
+{% assign mcp_tools = "" | split: "" %}
+{% for project in published %}
+    {% for cat in project.carouselCategories %}
+        {% if cat == "MCP Tools" %}
+            {% assign mcp_tools = mcp_tools | push: project %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+{% if mcp_tools.size > 0 %}
+<section class="carousel-section" aria-label="MCP Tools">
+    <h2 class="carousel-title">MCP Tools</h2>
+    <div class="carousel-wrapper">
+        <button class="carousel-arrow carousel-arrow--left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+        <div class="carousel-track">
+            {% for project in mcp_tools %}
+                {% assign g_idx = forloop.index0 | plus: 1 | modulo: gradient_classes.size %}
+                {% assign g_class = gradient_classes[g_idx] %}
+                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="title-card {{ g_class }}" aria-label="{{ project.title }}">
+                    <div class="title-card-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
+                    <div class="title-card-info">
+                        <div class="title-card-title">{{ project.title }}</div>
+                        <div class="title-card-meta">
+                            {% if project.status == "released" %}
+                                <span class="title-card-status shipped">Shipped</span>
+                            {% else %}
+                                <span class="title-card-status building">Building</span>
+                            {% endif %}
+                            <span class="title-card-tags">{{ project.tags | join: " · " }}</span>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <button class="carousel-arrow carousel-arrow--right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</section>
+{% endif %}
 
-            cards.forEach(card => {
-                const status = card.dataset.status;
-                if (filter === 'all' || status === filter) {
-                    card.style.display = '';
-                    card.style.animation = 'fadeSlideIn 0.4s ease forwards';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
+<!-- ===== CAROUSEL: AI AGENTS ===== -->
+{% assign ai_agents = "" | split: "" %}
+{% for project in published %}
+    {% for cat in project.carouselCategories %}
+        {% if cat == "AI Agents" %}
+            {% assign ai_agents = ai_agents | push: project %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+{% if ai_agents.size > 0 %}
+<section class="carousel-section" aria-label="AI Agents">
+    <h2 class="carousel-title">AI Agents</h2>
+    <div class="carousel-wrapper">
+        <button class="carousel-arrow carousel-arrow--left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+        <div class="carousel-track">
+            {% for project in ai_agents %}
+                {% assign g_idx = forloop.index0 | plus: 3 | modulo: gradient_classes.size %}
+                {% assign g_class = gradient_classes[g_idx] %}
+                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="title-card {{ g_class }}" aria-label="{{ project.title }}">
+                    <div class="title-card-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
+                    <div class="title-card-info">
+                        <div class="title-card-title">{{ project.title }}</div>
+                        <div class="title-card-meta">
+                            {% if project.status == "released" %}
+                                <span class="title-card-status shipped">Shipped</span>
+                            {% else %}
+                                <span class="title-card-status building">Building</span>
+                            {% endif %}
+                            <span class="title-card-tags">{{ project.tags | join: " · " }}</span>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <button class="carousel-arrow carousel-arrow--right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</section>
+{% endif %}
 
-    cards.forEach((card, i) => {
-        card.style.animationDelay = `${i * 0.06}s`;
-    });
-});
-</script>
+<!-- ===== CAROUSEL: ALL PROJECTS ===== -->
+{% if published.size > 0 %}
+<section class="carousel-section" aria-label="All projects">
+    <h2 class="carousel-title">All Projects</h2>
+    <div class="carousel-wrapper">
+        <button class="carousel-arrow carousel-arrow--left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+        <div class="carousel-track">
+            {% for project in published %}
+                {% assign g_idx = forloop.index0 | modulo: gradient_classes.size %}
+                {% assign g_class = gradient_classes[g_idx] %}
+                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="title-card {{ g_class }}" aria-label="{{ project.title }}">
+                    <div class="title-card-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
+                    <div class="title-card-info">
+                        <div class="title-card-title">{{ project.title }}</div>
+                        <div class="title-card-meta">
+                            {% if project.status == "released" %}
+                                <span class="title-card-status shipped">Shipped</span>
+                            {% else %}
+                                <span class="title-card-status building">Building</span>
+                            {% endif %}
+                            <span class="title-card-tags">{{ project.tags | join: " · " }}</span>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <button class="carousel-arrow carousel-arrow--right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</section>
+{% endif %}
