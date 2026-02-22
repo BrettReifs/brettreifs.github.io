@@ -6,17 +6,17 @@
     {% endif %}
     <div class="hero-stats">
         <div class="stat">
-            <span class="stat-number">11</span>
+            <span class="stat-number">{{ site.data.projects | where: "published", true | size }}</span>
             <span class="stat-label">Projects</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat">
-            <span class="stat-number">3</span>
+            <span class="stat-number">{{ site.data.projects | where: "published", true | where: "status", "released" | size }}</span>
             <span class="stat-label">Shipped</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat">
-            <span class="stat-number">8</span>
+            <span class="stat-number">{{ site.data.projects | where: "published", true | where: "status", "building" | size }}</span>
             <span class="stat-label">Building</span>
         </div>
     </div>
@@ -24,7 +24,7 @@
         <a href="https://github.com/brettreifs" class="hero-link" target="_blank" rel="noopener">
             <i class="fab fa-github"></i> GitHub
         </a>
-        <a href="https://linkedin.com/in/brettreif" class="hero-link" target="_blank" rel="noopener">
+        <a href="https://linkedin.com/in/brettreif" class="hero-link hero-link--secondary" target="_blank" rel="noopener">
             <i class="fab fa-linkedin"></i> LinkedIn
         </a>
     </div>

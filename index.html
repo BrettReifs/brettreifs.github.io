@@ -10,27 +10,36 @@ title: Home
     <button class="filter-btn" data-filter="building"><i class="fas fa-hammer"></i> Building</button>
 </div>
 
-<!-- Unified Project Grid -->
+<!-- Product Grid -->
 <div class="bento-grid" id="projectGrid">
     {% assign published_projects = site.data.projects | where: "published", true %}
-    {% assign gradient_classes = "card-gradient-1|card-gradient-2|card-gradient-3|card-gradient-4" | split: "|" %}
+    {% assign gradient_classes = "card-gradient-1|card-gradient-2|card-gradient-3|card-gradient-4|card-gradient-5|card-gradient-6|card-gradient-7|card-gradient-8" | split: "|" %}
+    {% assign hero_icons = "fas fa-pencil-ruler|fas fa-music|fas fa-palette|fas fa-video|fas fa-shield-alt|fas fa-comments|fas fa-chart-line|fas fa-random|fas fa-tasks|fas fa-lightbulb|fas fa-graduation-cap" | split: "|" %}
 
     {% if published_projects.size > 0 %}
         {% for project in published_projects %}
-            {% assign loop_index = forloop.index0 | modulo: gradient_classes.size %}
-            {% assign gradient_class = gradient_classes[loop_index] %}
+            {% assign gradient_index = forloop.index0 | modulo: gradient_classes.size %}
+            {% assign gradient_class = gradient_classes[gradient_index] %}
+            {% assign icon_index = forloop.index0 | modulo: hero_icons.size %}
+            {% assign hero_icon = hero_icons[icon_index] %}
 
-            {% assign size_class = "mini" %}
+            {% assign size_class = "feature" %}
             {% if project.category == "epic" %}
                 {% assign size_class = "epic" %}
-            {% elsif project.category == "feature" %}
-                {% assign size_class = "feature" %}
             {% endif %}
 
             {% assign project_url = "/project.html?id=" | append: project.id | relative_url %}
 
             <a href="{{ project_url }}" class="card {{ size_class }} {{ gradient_class }}" tabindex="0" aria-labelledby="card-title-{{ project.id }}" data-status="{{ project.status | default: 'building' }}">
                 <span id="card-title-{{ project.id }}" class="sr-only">{{ project.title }}</span>
+                <div class="card-hero">
+                    <div class="card-hero-bg"></div>
+                    {% if project.image and project.image != "" %}
+                        <img src="{{ project.image }}" alt="{{ project.title }}" loading="lazy">
+                    {% else %}
+                        <i class="{{ project.heroIcon | default: hero_icon }} card-hero-icon" aria-hidden="true"></i>
+                    {% endif %}
+                </div>
                 <div class="card-content">
                     <div class="card-header-row">
                         {% if project.tags and project.tags.size > 0 %}
@@ -72,7 +81,6 @@ title: Home
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // Filter functionality
     const filterBtns = document.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('.card');
 
@@ -94,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Stagger card entrance animation
     cards.forEach((card, i) => {
         card.style.animationDelay = `${i * 0.06}s`;
     });
