@@ -3,6 +3,16 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- Mobile nav toggle ---
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    if (navToggle && navLinks) {
+        navToggle.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('nav-open');
+            navToggle.setAttribute('aria-expanded', isOpen);
+        });
+    }
+
     // --- Navbar scroll opacity ---
     const navbar = document.querySelector('.navbar');
     if (navbar) {
@@ -16,6 +26,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Carousel arrow navigation ---
+    function updateCarouselArrows(wrapper) {
+        const track = wrapper.querySelector('.carousel-track');
+        const leftArrow = wrapper.querySelector('.carousel-arrow--left');
+        const rightArrow = wrapper.querySelector('.carousel-arrow--right');
+        if (!track || !leftArrow || !rightArrow) return;
+
+        leftArrow.style.display = track.scrollLeft <= 0 ? 'none' : '';
+        rightArrow.style.display =
+            track.scrollLeft + track.clientWidth >= track.scrollWidth - 1 ? 'none' : '';
+    }
+
     document.querySelectorAll('.carousel-wrapper').forEach(wrapper => {
         const track = wrapper.querySelector('.carousel-track');
         const leftBtn = wrapper.querySelector('.carousel-arrow--left');
@@ -36,6 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
             });
         }
+
+        track.addEventListener('scroll', () => {
+            requestAnimationFrame(() => updateCarouselArrows(wrapper));
+        }, { passive: true });
+
+        updateCarouselArrows(wrapper);
     });
 
     // --- Hero fade-in animation ---
@@ -45,8 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Hover Popup Cards ---
-    const POPUP_SHOW_DELAY = 300;
-    const POPUP_HIDE_DELAY = 200;
+    const POPUP_SHOW_DELAY = 150;  // ms before popup appears
+    const POPUP_HIDE_DELAY = 200;  // ms before popup hides
     let activePopup = null;
     let showTimer = null;
     let hideTimer = null;
@@ -62,8 +89,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (activePopup) {
             const card = activePopup.closest('.title-card');
             activePopup.classList.remove('popup-visible');
-            if (card) card.classList.remove('popup-active');
+            activePopup.setAttribute('aria-hidden', 'true');
+            if (card) {
+                card.classList.remove('popup-active');
+                const wrapper = card.closest('.carousel-wrapper');
+                if (wrapper) wrapper.classList.remove('popup-showing');
+            }
             activePopup = null;
+            // Remove sibling displacement classes
+            document.querySelectorAll('.sibling-shift-left').forEach(el => {
+                el.classList.remove('sibling-shift-left');
+            });
         }
     }
 
@@ -72,38 +108,77 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!popup) return;
         hideActivePopup();
         card.classList.add('popup-active');
+        const wrapper = card.closest('.carousel-wrapper');
+        if (wrapper) wrapper.classList.add('popup-showing');
         popup.classList.add('popup-visible');
+        popup.setAttribute('aria-hidden', 'false');
         activePopup = popup;
+
+        // Edge detection for popup alignment
+        const cardRect = card.getBoundingClientRect();
+        const viewportWidth = window.innerWidth;
+        popup.classList.remove('popup-card--align-left', 'popup-card--align-right');
+        if (cardRect.left < 100) {
+            popup.classList.add('popup-card--align-left');
+        } else if (cardRect.right > viewportWidth - 100) {
+            popup.classList.add('popup-card--align-right');
+        }
+
+        // Shift preceding siblings left
+        let prevSibling = card.previousElementSibling;
+        while (prevSibling && prevSibling.classList.contains('title-card')) {
+            prevSibling.classList.add('sibling-shift-left');
+            prevSibling = prevSibling.previousElementSibling;
+        }
     }
 
+    const hasHover = window.matchMedia('(hover: hover)').matches;
+
     document.querySelectorAll('.title-card[data-project-id]').forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            clearPopupTimers();
-            showTimer = setTimeout(() => showPopup(card), POPUP_SHOW_DELAY);
-        });
-
-        card.addEventListener('mouseleave', () => {
-            clearPopupTimers();
-            hideTimer = setTimeout(() => hideActivePopup(), POPUP_HIDE_DELAY);
-        });
-
-        // Keep popup alive when hovering into it
-        const popup = card.querySelector('.popup-card');
-        if (popup) {
-            popup.addEventListener('mouseenter', () => {
-                clearPopupTimers();
+        if (!hasHover) {
+            // Touch devices: tap goes directly to modal
+            card.addEventListener('click', () => {
+                const projectId = card.dataset.projectId;
+                if (projectId) openModal(projectId);
             });
-            popup.addEventListener('mouseleave', () => {
+        } else {
+            card.addEventListener('mouseenter', () => {
+                clearPopupTimers();
+                showTimer = setTimeout(() => showPopup(card), POPUP_SHOW_DELAY);
+            });
+
+            card.addEventListener('mouseleave', () => {
                 clearPopupTimers();
                 hideTimer = setTimeout(() => hideActivePopup(), POPUP_HIDE_DELAY);
             });
+
+            // Keep popup alive when hovering into it
+            const popup = card.querySelector('.popup-card');
+            if (popup) {
+                popup.addEventListener('mouseenter', () => {
+                    clearPopupTimers();
+                });
+                popup.addEventListener('mouseleave', () => {
+                    clearPopupTimers();
+                    hideTimer = setTimeout(() => hideActivePopup(), POPUP_HIDE_DELAY);
+                });
+            }
         }
+
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const projectId = card.dataset.projectId;
+                if (projectId) openModal(projectId);
+            }
+        });
     });
 
     // --- Detail Modal ---
     const modal = document.getElementById('detailModal');
     const projectDataEl = document.getElementById('project-data');
     let projectsData = [];
+    let modalTriggerElement = null;
 
     if (projectDataEl) {
         try {
@@ -207,11 +282,60 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // More Like This section
+        const moreLikeThisContainer = document.getElementById('modalMoreLikeThis');
+        if (moreLikeThisContainer && typeof projectsData !== 'undefined') {
+            const currentProject = projectsData.find(p => p.id === projectId);
+            if (currentProject) {
+                const related = projectsData.filter(p => 
+                    p.id !== projectId && 
+                    p.published && 
+                    (p.category === currentProject.category || 
+                     (p.tags && currentProject.tags && p.tags.some(t => currentProject.tags.includes(t))))
+                ).slice(0, 4);
+                
+                if (related.length > 0) {
+                    moreLikeThisContainer.innerHTML = '<h3 class="modal-section-heading">More Like This</h3>' +
+                        '<div class="modal-related-grid">' +
+                        related.map(r => `
+                            <div class="modal-related-card" data-modal-id="${r.id}" tabindex="0" role="button">
+                                <div class="modal-related-thumb ${r.heroIcon ? '' : 'card-grad-1'}">
+                                    <i class="${r.heroIcon || 'fas fa-code'}" aria-hidden="true"></i>
+                                </div>
+                                <div class="modal-related-info">
+                                    <div class="modal-related-title">${r.title}</div>
+                                    <div class="modal-related-desc">${(r.description || '').substring(0, 80)}...</div>
+                                </div>
+                            </div>
+                        `).join('') +
+                        '</div>';
+                    
+                    // Add click handlers for related cards
+                    moreLikeThisContainer.querySelectorAll('.modal-related-card').forEach(card => {
+                        card.addEventListener('click', () => openModal(card.dataset.modalId));
+                        card.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                openModal(card.dataset.modalId);
+                            }
+                        });
+                    });
+                } else {
+                    moreLikeThisContainer.innerHTML = '';
+                }
+            }
+        }
+
         // Show modal
+        modalTriggerElement = document.activeElement;
         hideActivePopup();
+        const scrollY = window.scrollY;
+        document.documentElement.style.setProperty('--scroll-y', `${scrollY}px`);
+        document.body.classList.add('modal-locked');
         modal.classList.add('modal-open');
         modal.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('modal-locked');
+        const closeBtn = modal.querySelector('.modal-close');
+        if (closeBtn) closeBtn.focus();
     }
 
     function closeModal() {
@@ -219,6 +343,12 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.classList.remove('modal-open');
         modal.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('modal-locked');
+        const savedY = parseInt(document.documentElement.style.getPropertyValue('--scroll-y') || '0');
+        window.scrollTo(0, savedY);
+        if (modalTriggerElement) {
+            modalTriggerElement.focus();
+            modalTriggerElement = null;
+        }
     }
 
     // Modal triggers — expand buttons + hero "Explore Project"
@@ -237,6 +367,31 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
     });
+
+    // Focus trap (Tab cycling)
+    if (modal) {
+        modal.addEventListener('keydown', (e) => {
+            if (e.key !== 'Tab') return;
+
+            const focusableElements = modal.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            const firstEl = focusableElements[0];
+            const lastEl = focusableElements[focusableElements.length - 1];
+
+            if (e.shiftKey) {
+                if (document.activeElement === firstEl) {
+                    e.preventDefault();
+                    lastEl.focus();
+                }
+            } else {
+                if (document.activeElement === lastEl) {
+                    e.preventDefault();
+                    firstEl.focus();
+                }
+            }
+        });
+    }
 
     // Close on backdrop click
     if (modal) {

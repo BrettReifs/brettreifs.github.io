@@ -31,6 +31,7 @@
     - "Real-Time"
   media: []
   image: ""
+  releaseDate: "2025-01-15"
   githubUrl: "https://github.com/brettreifs/excalidraw-mcp"
   videoUrl: ""
   published: true
@@ -64,6 +65,7 @@
     - "Multi-Modal"
   media: []
   image: ""
+  releaseDate: "2025-02-10"
   githubUrl: "https://github.com/brettreifs/mcp-app-media"
   videoUrl: ""
   published: true
@@ -96,6 +98,7 @@
     - "Elegant"
   media: []
   image: ""
+  releaseDate: "2024-11-20"
   githubUrl: "https://github.com/brettreifs/model-modes"
   videoUrl: ""
   published: true
@@ -130,6 +133,7 @@
     - "Self-Promoting"
   media: []
   image: ""
+  releaseDate: "2025-04-01"
   githubUrl: "https://github.com/brettreifs/content-engine"
   videoUrl: ""
   published: true
@@ -163,6 +167,7 @@
     - "Vigilant"
   media: []
   image: ""
+  releaseDate: "2025-03-15"
   githubUrl: "https://github.com/brettreifs/agent-sentinel"
   videoUrl: ""
   published: true
@@ -195,6 +200,7 @@
     - "Live"
   media: []
   image: ""
+  releaseDate: "2025-03-01"
   githubUrl: "https://github.com/brettreifs/agentic-philosophers"
   videoUrl: ""
   published: true
@@ -228,6 +234,7 @@
     - "Data-Driven"
   media: []
   image: ""
+  releaseDate: "2025-04-10"
   githubUrl: "https://github.com/brettreifs/agent-lens"
   videoUrl: ""
   published: true
@@ -260,6 +267,7 @@
     - "Adaptive"
   media: []
   image: ""
+  releaseDate: "2025-05-01"
   githubUrl: "https://github.com/brettreifs/model-router"
   videoUrl: ""
   published: true
@@ -292,6 +300,7 @@
     - "Practical"
   media: []
   image: ""
+  releaseDate: "2025-04-20"
   githubUrl: "https://github.com/brettreifs/pm-agent"
   videoUrl: ""
   published: true
@@ -324,6 +333,7 @@
     - "Conversational"
   media: []
   image: ""
+  releaseDate: "2025-05-15"
   githubUrl: "https://github.com/brettreifs/ideas-agent"
   videoUrl: ""
   published: true
@@ -356,6 +366,7 @@
     - "Community"
   media: []
   image: ""
+  releaseDate: "2025-06-01"
   githubUrl: "https://github.com/brettreifs/agent-academy"
   videoUrl: ""
   published: true

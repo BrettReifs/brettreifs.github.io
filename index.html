@@ -36,9 +36,9 @@ title: Home
         </div>
         {% endif %}
         <div class="hero-buttons">
-            <a href="javascript:void(0)" class="btn-hero btn-hero-primary" data-modal-id="{{ featured.id }}">
+            <button class="btn-hero btn-hero-primary" data-modal-id="{{ featured.id }}">
                 <i class="fas fa-play" aria-hidden="true"></i> Explore Project
-            </a>
+            </button>
             {% if featured.githubUrl %}
             <a href="{{ featured.githubUrl }}" class="btn-hero btn-hero-secondary" target="_blank" rel="noopener">
                 <i class="fab fa-github" aria-hidden="true"></i> View on GitHub
@@ -63,6 +63,9 @@ title: Home
                 {% assign g_idx = forloop.index0 | modulo: gradient_classes.size %}
                 {% assign g_class = gradient_classes[g_idx] %}
                 <div class="title-card {{ g_class }}" data-project-id="{{ project.id }}" tabindex="0" role="button" aria-label="{{ project.title }}">
+                    {% if project.image %}
+                    <img class="title-card-img" src="{{ project.image | relative_url }}" alt="{{ project.title }}" loading="lazy" width="480" height="270">
+                    {% endif %}
                     <div class="title-card-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
                     <div class="title-card-info">
                         <div class="title-card-title">{{ project.title }}</div>
@@ -124,6 +127,9 @@ title: Home
                 {% assign g_idx = forloop.index0 | plus: 1 | modulo: gradient_classes.size %}
                 {% assign g_class = gradient_classes[g_idx] %}
                 <div class="title-card {{ g_class }}" data-project-id="{{ project.id }}" tabindex="0" role="button" aria-label="{{ project.title }}">
+                    {% if project.image %}
+                    <img class="title-card-img" src="{{ project.image | relative_url }}" alt="{{ project.title }}" loading="lazy" width="480" height="270">
+                    {% endif %}
                     <div class="title-card-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
                     <div class="title-card-info">
                         <div class="title-card-title">{{ project.title }}</div>
@@ -180,6 +186,9 @@ title: Home
                 {% assign g_idx = forloop.index0 | plus: 3 | modulo: gradient_classes.size %}
                 {% assign g_class = gradient_classes[g_idx] %}
                 <div class="title-card {{ g_class }}" data-project-id="{{ project.id }}" tabindex="0" role="button" aria-label="{{ project.title }}">
+                    {% if project.image %}
+                    <img class="title-card-img" src="{{ project.image | relative_url }}" alt="{{ project.title }}" loading="lazy" width="480" height="270">
+                    {% endif %}
                     <div class="title-card-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
                     <div class="title-card-info">
                         <div class="title-card-title">{{ project.title }}</div>
@@ -228,6 +237,9 @@ title: Home
                 {% assign g_idx = forloop.index0 | modulo: gradient_classes.size %}
                 {% assign g_class = gradient_classes[g_idx] %}
                 <div class="title-card {{ g_class }}" data-project-id="{{ project.id }}" tabindex="0" role="button" aria-label="{{ project.title }}">
+                    {% if project.image %}
+                    <img class="title-card-img" src="{{ project.image | relative_url }}" alt="{{ project.title }}" loading="lazy" width="480" height="270">
+                    {% endif %}
                     <div class="title-card-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
                     <div class="title-card-info">
                         <div class="title-card-title">{{ project.title }}</div>
@@ -266,7 +278,7 @@ title: Home
 {% endif %}
 
 <!-- ===== DETAIL MODAL ===== -->
-<div class="modal-overlay" id="detailModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Project details">
+<div class="modal-overlay" id="detailModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-container">
         <button class="modal-close" aria-label="Close">&times;</button>
         <div class="modal-hero" id="modalHero">
@@ -290,6 +302,7 @@ title: Home
                         </div>
                     </div>
                 </div>
+                <div class="modal-more-like-this" id="modalMoreLikeThis"></div>
             </div>
             <div class="modal-sidebar">
                 <div class="modal-sidebar-section">

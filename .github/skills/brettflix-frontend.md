@@ -151,6 +151,10 @@ Page (default.html layout)
 - **Gradient classes**: `.card-grad-1` through `.card-grad-8` (cycling via Liquid modulo)
 - **Status modifiers**: `--shipped`, `--building`, `--primary`, `--secondary`
 
+## Media Asset Pipeline
+
+See `docs/MEDIA_HANDOFF_SPEC.md` for the complete media asset specification. Video and image agents should follow this spec when producing assets for the site.
+
 ## Testing
 
 Run `assets/js/brettflix.test.js` in browser DevTools console. It validates:
