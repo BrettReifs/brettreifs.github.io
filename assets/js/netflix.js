@@ -44,4 +44,212 @@ document.addEventListener('DOMContentLoaded', () => {
         heroContent.style.opacity = '1';
     }
 
+    // --- Hover Popup Cards ---
+    const POPUP_SHOW_DELAY = 300;
+    const POPUP_HIDE_DELAY = 200;
+    let activePopup = null;
+    let showTimer = null;
+    let hideTimer = null;
+
+    function clearPopupTimers() {
+        clearTimeout(showTimer);
+        clearTimeout(hideTimer);
+        showTimer = null;
+        hideTimer = null;
+    }
+
+    function hideActivePopup() {
+        if (activePopup) {
+            const card = activePopup.closest('.title-card');
+            activePopup.classList.remove('popup-visible');
+            if (card) card.classList.remove('popup-active');
+            activePopup = null;
+        }
+    }
+
+    function showPopup(card) {
+        const popup = card.querySelector('.popup-card');
+        if (!popup) return;
+        hideActivePopup();
+        card.classList.add('popup-active');
+        popup.classList.add('popup-visible');
+        activePopup = popup;
+    }
+
+    document.querySelectorAll('.title-card[data-project-id]').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            clearPopupTimers();
+            showTimer = setTimeout(() => showPopup(card), POPUP_SHOW_DELAY);
+        });
+
+        card.addEventListener('mouseleave', () => {
+            clearPopupTimers();
+            hideTimer = setTimeout(() => hideActivePopup(), POPUP_HIDE_DELAY);
+        });
+
+        // Keep popup alive when hovering into it
+        const popup = card.querySelector('.popup-card');
+        if (popup) {
+            popup.addEventListener('mouseenter', () => {
+                clearPopupTimers();
+            });
+            popup.addEventListener('mouseleave', () => {
+                clearPopupTimers();
+                hideTimer = setTimeout(() => hideActivePopup(), POPUP_HIDE_DELAY);
+            });
+        }
+    });
+
+    // --- Detail Modal ---
+    const modal = document.getElementById('detailModal');
+    const projectDataEl = document.getElementById('project-data');
+    let projectsData = [];
+
+    if (projectDataEl) {
+        try {
+            projectsData = JSON.parse(projectDataEl.textContent);
+        } catch (e) {
+            console.warn('Failed to parse project data:', e);
+        }
+    }
+
+    function findProject(id) {
+        return projectsData.find(p => p.id === id);
+    }
+
+    function getGradientIndex(id) {
+        const idx = projectsData.findIndex(p => p.id === id);
+        return (idx >= 0 ? idx : 0) % 8 + 1;
+    }
+
+    function openModal(projectId) {
+        const project = findProject(projectId);
+        if (!project || !modal) return;
+
+        const gIdx = getGradientIndex(projectId);
+
+        // Hero
+        const heroGrad = document.getElementById('modalHeroGradient');
+        const heroIcon = document.getElementById('modalHeroIcon');
+        if (heroGrad) heroGrad.style.background = `var(--gradient-${gIdx})`;
+        if (heroIcon) heroIcon.className = `${project.heroIcon} modal-hero-icon`;
+
+        // Title
+        const titleEl = document.getElementById('modalTitle');
+        if (titleEl) titleEl.textContent = project.title;
+
+        // Hero buttons
+        const btnsEl = document.getElementById('modalHeroButtons');
+        if (btnsEl) {
+            let html = `<a href="/project.html?id=${project.id}" class="modal-hero-btn modal-hero-btn--primary"><i class="fas fa-play"></i> Explore</a>`;
+            if (project.githubUrl) {
+                html += `<a href="${project.githubUrl}" class="modal-hero-btn modal-hero-btn--secondary" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>`;
+            }
+            btnsEl.innerHTML = html;
+        }
+
+        // Meta row
+        const metaRow = document.getElementById('modalMetaRow');
+        if (metaRow) {
+            const statusClass = project.status === 'released' ? 'shipped' : 'building';
+            const statusLabel = project.status === 'released' ? 'Shipped' : 'Building';
+            let html = `<span class="modal-meta-badge modal-meta-badge--${statusClass}">${statusLabel}</span>`;
+            html += `<span class="modal-meta-text">${project.category ? project.category.charAt(0).toUpperCase() + project.category.slice(1) : ''}</span>`;
+            if (project.tags && project.tags.length) {
+                html += project.tags.slice(0, 5).map(t => `<span class="modal-meta-text">${t}</span>`).join('');
+            }
+            metaRow.innerHTML = html;
+        }
+
+        // Description
+        const descEl = document.getElementById('modalDescription');
+        if (descEl) descEl.textContent = project.description || '';
+
+        const fullDescEl = document.getElementById('modalFullDescription');
+        if (fullDescEl) fullDescEl.innerHTML = project.fullDescription || '';
+
+        // Sidebar
+        const techEl = document.getElementById('modalTechStack');
+        if (techEl) techEl.textContent = project.tags ? project.tags.join(', ') : '';
+
+        const catEl = document.getElementById('modalCategory');
+        if (catEl) catEl.textContent = project.category ? project.category.charAt(0).toUpperCase() + project.category.slice(1) : '';
+
+        const descTagsEl = document.getElementById('modalDescriptors');
+        if (descTagsEl) descTagsEl.textContent = project.descriptors ? project.descriptors.join(', ') : '';
+
+        // Links
+        const linksEl = document.getElementById('modalLinks');
+        if (linksEl) {
+            let html = `<a href="/project.html?id=${project.id}" class="modal-sidebar-link"><i class="fas fa-external-link-alt"></i> Project Page</a>`;
+            if (project.githubUrl) {
+                html += `<a href="${project.githubUrl}" class="modal-sidebar-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub Repo</a>`;
+            }
+            if (project.videoUrl) {
+                html += `<a href="${project.videoUrl}" class="modal-sidebar-link" target="_blank" rel="noopener"><i class="fas fa-video"></i> Video</a>`;
+            }
+            linksEl.innerHTML = html;
+        }
+
+        // Media section
+        const mediaGrid = document.getElementById('modalMediaGrid');
+        if (mediaGrid) {
+            if (project.media && project.media.length > 0) {
+                mediaGrid.innerHTML = project.media.map(m => {
+                    const icon = m.type === 'trailer' ? 'fa-film' : m.type === 'tutorial' ? 'fa-graduation-cap' : 'fa-play-circle';
+                    return `<div class="modal-media-card">
+                        <div class="modal-media-thumb"><i class="fas ${icon}"></i></div>
+                        <div class="modal-media-title">${m.title || m.type}</div>
+                    </div>`;
+                }).join('');
+            } else {
+                mediaGrid.innerHTML = `<div class="modal-media-placeholder"><i class="fas fa-film" aria-hidden="true"></i><p>Trailers &amp; videos coming soon</p></div>`;
+            }
+        }
+
+        // Show modal
+        hideActivePopup();
+        modal.classList.add('modal-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-locked');
+    }
+
+    function closeModal() {
+        if (!modal) return;
+        modal.classList.remove('modal-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-locked');
+    }
+
+    // Modal triggers — expand buttons + hero "Explore Project"
+    document.addEventListener('click', (e) => {
+        const expandBtn = e.target.closest('[data-modal-id]');
+        if (expandBtn) {
+            e.preventDefault();
+            e.stopPropagation();
+            openModal(expandBtn.getAttribute('data-modal-id'));
+            return;
+        }
+
+        const closeBtn = e.target.closest('.modal-close');
+        if (closeBtn) {
+            closeModal();
+            return;
+        }
+    });
+
+    // Close on backdrop click
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    }
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && modal.classList.contains('modal-open')) {
+            closeModal();
+        }
+    });
+
 });

@@ -25,6 +25,11 @@
     - "Excalidraw"
     - "TypeScript"
     - "Diagrams"
+  descriptors:
+    - "Visual"
+    - "Innovative"
+    - "Real-Time"
+  media: []
   image: ""
   githubUrl: "https://github.com/brettreifs/excalidraw-mcp"
   videoUrl: ""
@@ -53,6 +58,11 @@
     - "Spotify"
     - "Suno AI"
     - "TypeScript"
+  descriptors:
+    - "Creative"
+    - "Playful"
+    - "Multi-Modal"
+  media: []
   image: ""
   githubUrl: "https://github.com/brettreifs/mcp-app-media"
   videoUrl: ""
@@ -80,6 +90,11 @@
     - "Extension"
     - "DX"
     - "TypeScript"
+  descriptors:
+    - "Polished"
+    - "Developer-First"
+    - "Elegant"
+  media: []
   image: ""
   githubUrl: "https://github.com/brettreifs/model-modes"
   videoUrl: ""
@@ -109,6 +124,11 @@
     - "Automation"
     - "AI"
     - "TypeScript"
+  descriptors:
+    - "Automated"
+    - "Viral"
+    - "Self-Promoting"
+  media: []
   image: ""
   githubUrl: "https://github.com/brettreifs/content-engine"
   videoUrl: ""
@@ -137,6 +157,11 @@
     - "Security"
     - "MCP"
     - "Python"
+  descriptors:
+    - "Enterprise"
+    - "Secure"
+    - "Vigilant"
+  media: []
   image: ""
   githubUrl: "https://github.com/brettreifs/agent-sentinel"
   videoUrl: ""
@@ -164,6 +189,11 @@
     - "WebSocket"
     - "CrewAI"
     - "React"
+  descriptors:
+    - "Thought-Provoking"
+    - "Collaborative"
+    - "Live"
+  media: []
   image: ""
   githubUrl: "https://github.com/brettreifs/agentic-philosophers"
   videoUrl: ""
@@ -192,6 +222,11 @@
     - "MCP"
     - "Monorepo"
     - "TypeScript"
+  descriptors:
+    - "Insightful"
+    - "Zero-Config"
+    - "Data-Driven"
+  media: []
   image: ""
   githubUrl: "https://github.com/brettreifs/agent-lens"
   videoUrl: ""
@@ -219,6 +254,11 @@
     - "Multi-Model"
     - "FastAPI"
     - "Python"
+  descriptors:
+    - "Smart"
+    - "Cost-Efficient"
+    - "Adaptive"
+  media: []
   image: ""
   githubUrl: "https://github.com/brettreifs/model-router"
   videoUrl: ""
@@ -246,6 +286,11 @@
     - "CLI"
     - "NLP"
     - "Python"
+  descriptors:
+    - "Strategic"
+    - "Automated"
+    - "Practical"
+  media: []
   image: ""
   githubUrl: "https://github.com/brettreifs/pm-agent"
   videoUrl: ""
@@ -273,6 +318,11 @@
     - "Knowledge"
     - "ChromaDB"
     - "Python"
+  descriptors:
+    - "Curious"
+    - "Connective"
+    - "Conversational"
+  media: []
   image: ""
   githubUrl: "https://github.com/brettreifs/ideas-agent"
   videoUrl: ""
@@ -300,6 +350,11 @@
     - "Next.js"
     - "Platform"
     - "FTS5"
+  descriptors:
+    - "Meta"
+    - "Composable"
+    - "Community"
+  media: []
   image: ""
   githubUrl: "https://github.com/brettreifs/agent-academy"
   videoUrl: ""

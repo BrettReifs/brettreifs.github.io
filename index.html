@@ -7,9 +7,13 @@ title: Home
 {% assign featured = published | where: "featured", true | first %}
 {% assign gradient_classes = "card-grad-1|card-grad-2|card-grad-3|card-grad-4|card-grad-5|card-grad-6|card-grad-7|card-grad-8" | split: "|" %}
 
+<!-- Embed all project data for JS modal -->
+<script id="project-data" type="application/json">
+{{ published | jsonify }}
+</script>
+
 <!-- ===== HERO BILLBOARD ===== -->
 {% if featured %}
-{% assign feat_grad_idx = 0 %}
 <section class="hero-billboard" aria-label="Featured project">
     <div class="hero-bg">
         <div class="hero-bg-gradient" style="background: var(--gradient-1);"></div>
@@ -29,7 +33,7 @@ title: Home
         </div>
         {% endif %}
         <div class="hero-buttons">
-            <a href="{{ '/project.html?id=' | append: featured.id | relative_url }}" class="btn-hero btn-hero-primary">
+            <a href="javascript:void(0)" class="btn-hero btn-hero-primary" data-modal-id="{{ featured.id }}">
                 <i class="fas fa-play" aria-hidden="true"></i> Explore Project
             </a>
             {% if featured.githubUrl %}
@@ -42,6 +46,8 @@ title: Home
 </section>
 {% endif %}
 
+{% comment %} ===== CAROUSEL MACRO (repeated per row) ===== {% endcomment %}
+
 <!-- ===== CAROUSEL: SHIPPED ===== -->
 {% assign shipped = published | where: "status", "released" %}
 {% if shipped.size > 0 %}
@@ -53,16 +59,42 @@ title: Home
             {% for project in shipped %}
                 {% assign g_idx = forloop.index0 | modulo: gradient_classes.size %}
                 {% assign g_class = gradient_classes[g_idx] %}
-                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="title-card {{ g_class }}" aria-label="{{ project.title }}">
+                <div class="title-card {{ g_class }}" data-project-id="{{ project.id }}" tabindex="0" role="button" aria-label="{{ project.title }}">
                     <div class="title-card-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
                     <div class="title-card-info">
                         <div class="title-card-title">{{ project.title }}</div>
-                        <div class="title-card-meta">
-                            <span class="title-card-status shipped">Shipped</span>
-                            <span class="title-card-tags">{{ project.tags | join: " · " }}</span>
+                    </div>
+                    <!-- Hover Popup -->
+                    <div class="popup-card" aria-hidden="true">
+                        <div class="popup-thumbnail {{ g_class }}">
+                            <div class="popup-thumb-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
+                            <span class="popup-brand">BRETTFLIX</span>
+                            <div class="popup-title-overlay">{{ project.title }}</div>
+                        </div>
+                        <div class="popup-controls">
+                            <div class="popup-buttons">
+                                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="popup-btn popup-btn--play" title="Explore Project"><i class="fas fa-play"></i></a>
+                                {% if project.githubUrl %}
+                                <a href="{{ project.githubUrl }}" class="popup-btn" title="View on GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                                {% endif %}
+                            </div>
+                            <button class="popup-btn popup-btn--expand" title="More Info" data-modal-id="{{ project.id }}"><i class="fas fa-chevron-down"></i></button>
+                        </div>
+                        <div class="popup-meta">
+                            {% if project.status == "released" %}
+                                <span class="popup-status popup-status--shipped">Shipped</span>
+                            {% else %}
+                                <span class="popup-status popup-status--building">Building</span>
+                            {% endif %}
+                            <span class="popup-category">{{ project.category | capitalize }}</span>
+                        </div>
+                        <div class="popup-descriptors">
+                            {% if project.descriptors %}
+                                {{ project.descriptors | join: " · " }}
+                            {% endif %}
                         </div>
                     </div>
-                </a>
+                </div>
             {% endfor %}
         </div>
         <button class="carousel-arrow carousel-arrow--right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
@@ -88,20 +120,37 @@ title: Home
             {% for project in mcp_tools %}
                 {% assign g_idx = forloop.index0 | plus: 1 | modulo: gradient_classes.size %}
                 {% assign g_class = gradient_classes[g_idx] %}
-                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="title-card {{ g_class }}" aria-label="{{ project.title }}">
+                <div class="title-card {{ g_class }}" data-project-id="{{ project.id }}" tabindex="0" role="button" aria-label="{{ project.title }}">
                     <div class="title-card-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
                     <div class="title-card-info">
                         <div class="title-card-title">{{ project.title }}</div>
-                        <div class="title-card-meta">
-                            {% if project.status == "released" %}
-                                <span class="title-card-status shipped">Shipped</span>
-                            {% else %}
-                                <span class="title-card-status building">Building</span>
-                            {% endif %}
-                            <span class="title-card-tags">{{ project.tags | join: " · " }}</span>
-                        </div>
                     </div>
-                </a>
+                    <div class="popup-card" aria-hidden="true">
+                        <div class="popup-thumbnail {{ g_class }}">
+                            <div class="popup-thumb-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
+                            <span class="popup-brand">BRETTFLIX</span>
+                            <div class="popup-title-overlay">{{ project.title }}</div>
+                        </div>
+                        <div class="popup-controls">
+                            <div class="popup-buttons">
+                                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="popup-btn popup-btn--play" title="Explore Project"><i class="fas fa-play"></i></a>
+                                {% if project.githubUrl %}
+                                <a href="{{ project.githubUrl }}" class="popup-btn" title="View on GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                                {% endif %}
+                            </div>
+                            <button class="popup-btn popup-btn--expand" title="More Info" data-modal-id="{{ project.id }}"><i class="fas fa-chevron-down"></i></button>
+                        </div>
+                        <div class="popup-meta">
+                            {% if project.status == "released" %}
+                                <span class="popup-status popup-status--shipped">Shipped</span>
+                            {% else %}
+                                <span class="popup-status popup-status--building">Building</span>
+                            {% endif %}
+                            <span class="popup-category">{{ project.category | capitalize }}</span>
+                        </div>
+                        <div class="popup-descriptors">{{ project.descriptors | join: " · " }}</div>
+                    </div>
+                </div>
             {% endfor %}
         </div>
         <button class="carousel-arrow carousel-arrow--right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
@@ -127,20 +176,37 @@ title: Home
             {% for project in ai_agents %}
                 {% assign g_idx = forloop.index0 | plus: 3 | modulo: gradient_classes.size %}
                 {% assign g_class = gradient_classes[g_idx] %}
-                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="title-card {{ g_class }}" aria-label="{{ project.title }}">
+                <div class="title-card {{ g_class }}" data-project-id="{{ project.id }}" tabindex="0" role="button" aria-label="{{ project.title }}">
                     <div class="title-card-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
                     <div class="title-card-info">
                         <div class="title-card-title">{{ project.title }}</div>
-                        <div class="title-card-meta">
-                            {% if project.status == "released" %}
-                                <span class="title-card-status shipped">Shipped</span>
-                            {% else %}
-                                <span class="title-card-status building">Building</span>
-                            {% endif %}
-                            <span class="title-card-tags">{{ project.tags | join: " · " }}</span>
-                        </div>
                     </div>
-                </a>
+                    <div class="popup-card" aria-hidden="true">
+                        <div class="popup-thumbnail {{ g_class }}">
+                            <div class="popup-thumb-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
+                            <span class="popup-brand">BRETTFLIX</span>
+                            <div class="popup-title-overlay">{{ project.title }}</div>
+                        </div>
+                        <div class="popup-controls">
+                            <div class="popup-buttons">
+                                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="popup-btn popup-btn--play" title="Explore Project"><i class="fas fa-play"></i></a>
+                                {% if project.githubUrl %}
+                                <a href="{{ project.githubUrl }}" class="popup-btn" title="View on GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                                {% endif %}
+                            </div>
+                            <button class="popup-btn popup-btn--expand" title="More Info" data-modal-id="{{ project.id }}"><i class="fas fa-chevron-down"></i></button>
+                        </div>
+                        <div class="popup-meta">
+                            {% if project.status == "released" %}
+                                <span class="popup-status popup-status--shipped">Shipped</span>
+                            {% else %}
+                                <span class="popup-status popup-status--building">Building</span>
+                            {% endif %}
+                            <span class="popup-category">{{ project.category | capitalize }}</span>
+                        </div>
+                        <div class="popup-descriptors">{{ project.descriptors | join: " · " }}</div>
+                    </div>
+                </div>
             {% endfor %}
         </div>
         <button class="carousel-arrow carousel-arrow--right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
@@ -158,23 +224,88 @@ title: Home
             {% for project in published %}
                 {% assign g_idx = forloop.index0 | modulo: gradient_classes.size %}
                 {% assign g_class = gradient_classes[g_idx] %}
-                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="title-card {{ g_class }}" aria-label="{{ project.title }}">
+                <div class="title-card {{ g_class }}" data-project-id="{{ project.id }}" tabindex="0" role="button" aria-label="{{ project.title }}">
                     <div class="title-card-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
                     <div class="title-card-info">
                         <div class="title-card-title">{{ project.title }}</div>
-                        <div class="title-card-meta">
-                            {% if project.status == "released" %}
-                                <span class="title-card-status shipped">Shipped</span>
-                            {% else %}
-                                <span class="title-card-status building">Building</span>
-                            {% endif %}
-                            <span class="title-card-tags">{{ project.tags | join: " · " }}</span>
-                        </div>
                     </div>
-                </a>
+                    <div class="popup-card" aria-hidden="true">
+                        <div class="popup-thumbnail {{ g_class }}">
+                            <div class="popup-thumb-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
+                            <span class="popup-brand">BRETTFLIX</span>
+                            <div class="popup-title-overlay">{{ project.title }}</div>
+                        </div>
+                        <div class="popup-controls">
+                            <div class="popup-buttons">
+                                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="popup-btn popup-btn--play" title="Explore Project"><i class="fas fa-play"></i></a>
+                                {% if project.githubUrl %}
+                                <a href="{{ project.githubUrl }}" class="popup-btn" title="View on GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                                {% endif %}
+                            </div>
+                            <button class="popup-btn popup-btn--expand" title="More Info" data-modal-id="{{ project.id }}"><i class="fas fa-chevron-down"></i></button>
+                        </div>
+                        <div class="popup-meta">
+                            {% if project.status == "released" %}
+                                <span class="popup-status popup-status--shipped">Shipped</span>
+                            {% else %}
+                                <span class="popup-status popup-status--building">Building</span>
+                            {% endif %}
+                            <span class="popup-category">{{ project.category | capitalize }}</span>
+                        </div>
+                        <div class="popup-descriptors">{{ project.descriptors | join: " · " }}</div>
+                    </div>
+                </div>
             {% endfor %}
         </div>
         <button class="carousel-arrow carousel-arrow--right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
     </div>
 </section>
 {% endif %}
+
+<!-- ===== DETAIL MODAL ===== -->
+<div class="modal-overlay" id="detailModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Project details">
+    <div class="modal-container">
+        <button class="modal-close" aria-label="Close">&times;</button>
+        <div class="modal-hero" id="modalHero">
+            <div class="modal-hero-gradient" id="modalHeroGradient"></div>
+            <i class="modal-hero-icon" id="modalHeroIcon" aria-hidden="true"></i>
+            <span class="modal-brand">BRETTFLIX</span>
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <div class="modal-hero-buttons" id="modalHeroButtons"></div>
+        </div>
+        <div class="modal-body">
+            <div class="modal-main">
+                <div class="modal-meta-row" id="modalMetaRow"></div>
+                <p class="modal-description" id="modalDescription"></p>
+                <div class="modal-full-description" id="modalFullDescription"></div>
+                <div class="modal-media-section" id="modalMediaSection">
+                    <h3 class="modal-section-heading">Media</h3>
+                    <div class="modal-media-grid" id="modalMediaGrid">
+                        <div class="modal-media-placeholder">
+                            <i class="fas fa-film" aria-hidden="true"></i>
+                            <p>Trailers &amp; videos coming soon</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-sidebar">
+                <div class="modal-sidebar-section">
+                    <span class="modal-sidebar-label">Tech Stack:</span>
+                    <span class="modal-sidebar-value" id="modalTechStack"></span>
+                </div>
+                <div class="modal-sidebar-section">
+                    <span class="modal-sidebar-label">Category:</span>
+                    <span class="modal-sidebar-value" id="modalCategory"></span>
+                </div>
+                <div class="modal-sidebar-section">
+                    <span class="modal-sidebar-label">This Project Is:</span>
+                    <span class="modal-sidebar-value modal-sidebar-descriptors" id="modalDescriptors"></span>
+                </div>
+                <div class="modal-sidebar-section" id="modalLinksSection">
+                    <span class="modal-sidebar-label">Links:</span>
+                    <div class="modal-sidebar-links" id="modalLinks"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
