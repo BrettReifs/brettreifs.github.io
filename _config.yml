@@ -1,13 +1,13 @@
 # _config.yml
 
 # Site settings
-title: Project Gallery # Appears in the browser tab, can be used in templates
-email: your-email@example.com # Optional contact email
-description: >- # Appears in meta tags and search results. Use >- for multi-line.
-  A showcase of my Canvas applications and creative coding projects.
-baseurl: "" # The subpath of your site, e.g. /blog. If hosted at username.github.io, keep it empty.
-url: "https://your-username.github.io" # The base hostname & protocol for your site
-github_username: your-username # Optional: Your GitHub username
+title: Brett Reif
+email: ""
+description: >-
+  Builder, product thinker, and agentic AI pioneer. Crafting the tools, protocols, and platforms that make AI agents production-ready.
+baseurl: ""
+url: "https://brettreifs.github.io"
+github_username: brettreifs
 
 # Build settings
 markdown: kramdown # Markdown processor

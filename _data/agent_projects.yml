@@ -1,0 +1,145 @@
+# _data/agent_projects.yml
+# Agent Portfolio projects showcasing agentic AI work.
+
+- id: "content-engine"
+  name: "Content Engine"
+  description: "AI-powered content generation and management pipeline that transforms rough ideas into polished, multi-format deliverables."
+  whyIBuiltThis: "Content creation is one of the highest-leverage activities for any builder, yet the tooling treats it as a one-shot generation problem. I wanted a system that models the full editorial workflow — ideation, drafting, revision, and distribution — so agents can own the entire pipeline end to end."
+  repoUrl: "https://github.com/brettreifs/content-engine"
+  tags:
+    - "AI"
+    - "Content"
+    - "Pipeline"
+  category: "tools"
+  status: "in-development"
+  hasAgentsMd: false
+
+- id: "excalidraw-mcp"
+  name: "Excalidraw MCP"
+  description: "Model Context Protocol server that lets AI agents create, read, and manipulate Excalidraw diagrams programmatically."
+  whyIBuiltThis: "Diagrams are a critical thinking tool, but agents can't draw. By exposing Excalidraw through MCP, I gave agents the ability to sketch architecture diagrams, flowcharts, and wireframes — closing the gap between textual reasoning and visual communication."
+  repoUrl: "https://github.com/brettreifs/excalidraw-mcp"
+  tags:
+    - "MCP"
+    - "Excalidraw"
+    - "Diagrams"
+  category: "mcp-server"
+  status: "released"
+  hasAgentsMd: true
+
+- id: "model-modes"
+  name: "Model Modes"
+  description: "Configurable behavioral presets for LLMs that switch between creative, analytical, and conversational interaction styles."
+  whyIBuiltThis: "A single system prompt rarely fits every task. Model Modes lets you define reusable personality and behavior profiles — like switching an IDE between debug and release mode — so agents adapt their tone and reasoning strategy to the job at hand."
+  repoUrl: "https://github.com/brettreifs/model-modes"
+  tags:
+    - "LLM"
+    - "Prompting"
+    - "Config"
+  category: "tools"
+  status: "released"
+  hasAgentsMd: true
+
+- id: "mcp-app-media"
+  name: "MCP App Media"
+  description: "MCP server providing agents with access to Apple Music and media playback controls through structured tool calls."
+  whyIBuiltThis: "Agents should be able to interact with the apps we use every day. This server proves that MCP can bridge the gap between AI assistants and native desktop applications, starting with something everyone uses — their music player."
+  repoUrl: "https://github.com/brettreifs/mcp-app-media"
+  tags:
+    - "MCP"
+    - "Media"
+    - "macOS"
+  category: "mcp-server"
+  status: "released"
+  hasAgentsMd: true
+
+- id: "pm-agent"
+  name: "PM Agent"
+  description: "An autonomous product management agent that drafts PRDs, prioritizes backlogs, and synthesizes user feedback into actionable insights."
+  whyIBuiltThis: "Product managers spend too much time on document formatting and status updates instead of strategic thinking. I built PM Agent to automate the mechanical parts of the PM role so humans can focus on customer empathy and decision-making."
+  repoUrl: "https://github.com/brettreifs/pm-agent"
+  tags:
+    - "PM"
+    - "Autonomous"
+    - "Planning"
+  category: "tools"
+  status: "in-development"
+  hasAgentsMd: false
+
+- id: "ideas-agent"
+  name: "Ideas Agent"
+  description: "Captures, enriches, and connects raw ideas into a structured knowledge graph that surfaces surprising relationships."
+  whyIBuiltThis: "Great ideas rarely arrive fully formed — they need incubation. Ideas Agent acts as an always-on thought partner that captures fragments, finds connections across your notes, and surfaces the most promising threads when you're ready to build."
+  repoUrl: "https://github.com/brettreifs/ideas-agent"
+  tags:
+    - "Knowledge"
+    - "Graph"
+    - "Ideation"
+  category: "tools"
+  status: "in-development"
+  hasAgentsMd: false
+
+- id: "agentic-philosophers"
+  name: "Agentic Philosophers"
+  description: "Multi-agent debate system where AI philosophers argue ethical dilemmas using different philosophical frameworks."
+  whyIBuiltThis: "Multi-agent systems need a testbed that's intellectually rich and easy to evaluate. Philosophical debate is perfect — it exercises reasoning, persuasion, and structured argumentation while producing outputs humans can meaningfully judge."
+  repoUrl: "https://github.com/brettreifs/agentic-philosophers"
+  tags:
+    - "Multi-Agent"
+    - "Debate"
+    - "Ethics"
+  category: "multi-agent"
+  status: "in-development"
+  hasAgentsMd: false
+
+- id: "agent-sentinel"
+  name: "Agent Sentinel"
+  description: "Governance and observability layer that monitors agent behavior, enforces policy guardrails, and flags anomalous actions."
+  whyIBuiltThis: "As agents gain more autonomy, someone needs to watch the watchers. Agent Sentinel provides the governance infrastructure that makes it safe to give agents real-world permissions — audit trails, policy enforcement, and kill switches included."
+  repoUrl: "https://github.com/brettreifs/agent-sentinel"
+  tags:
+    - "Governance"
+    - "Safety"
+    - "Monitoring"
+  category: "governance"
+  status: "in-development"
+  hasAgentsMd: false
+
+- id: "agent-lens"
+  name: "Agent Lens"
+  description: "Debugging and introspection toolkit that visualizes agent reasoning chains, tool calls, and decision trees in real time."
+  whyIBuiltThis: "You can't improve what you can't see. Agent Lens makes the invisible visible — showing exactly how an agent reasons, where it gets stuck, and which tool calls produce useful results — turning black-box agents into debuggable systems."
+  repoUrl: "https://github.com/brettreifs/agent-lens"
+  tags:
+    - "Debugging"
+    - "Visualization"
+    - "DevTools"
+  category: "infrastructure"
+  status: "in-development"
+  hasAgentsMd: false
+
+- id: "model-router"
+  name: "Model Router"
+  description: "Intelligent request router that selects the optimal LLM for each task based on cost, latency, and capability requirements."
+  whyIBuiltThis: "No single model is best at everything, yet most applications hardcode one provider. Model Router brings the load-balancer pattern to AI — routing each request to the model that offers the best quality-to-cost ratio for that specific task."
+  repoUrl: "https://github.com/brettreifs/model-router"
+  tags:
+    - "Routing"
+    - "LLM"
+    - "Optimization"
+  category: "infrastructure"
+  status: "in-development"
+  hasAgentsMd: false
+
+- id: "agent-academy"
+  name: "Agent Academy"
+  description: "Interactive learning platform that teaches developers how to build, test, and deploy production-grade AI agents."
+  whyIBuiltThis: "The gap between 'hello world' agent demos and production systems is enormous. Agent Academy provides structured, hands-on curricula that take developers from basic prompt engineering to building robust multi-agent architectures with proper testing and observability."
+  repoUrl: "https://github.com/brettreifs/agent-academy"
+  tags:
+    - "Education"
+    - "Tutorial"
+    - "Platform"
+  category: "platform"
+  status: "in-development"
+  hasAgentsMd: false

@@ -1,0 +1,31 @@
+{% comment %}
+  Agent project card. Expects `project` variable to be set.
+{% endcomment %}
+<div class="agent-card" data-category="{{ project.category }}">
+    <div class="agent-card-header">
+        <span class="agent-category-tag agent-category-{{ project.category }}">{{ project.category }}</span>
+        <span class="agent-status-badge agent-status-{{ project.status }}">
+            {% if project.status == "released" %}● Released
+            {% elsif project.status == "beta" %}● Beta
+            {% else %}● In Development
+            {% endif %}
+        </span>
+    </div>
+    <h3 class="agent-card-title">{{ project.name }}</h3>
+    <p class="agent-card-description">{{ project.description }}</p>
+    <div class="agent-card-tags">
+        {% for tag in project.tags %}
+            <span class="agent-card-tag">{{ tag }}</span>
+        {% endfor %}
+    </div>
+    <div class="agent-card-footer">
+        <div class="agent-card-badges">
+            {% if project.hasAgentsMd %}
+                {% include agents_badge.html %}
+            {% endif %}
+        </div>
+        <a href="{{ project.repoUrl }}" class="agent-github-link" target="_blank" rel="noopener noreferrer" aria-label="View {{ project.name }} on GitHub">
+            <i class="fab fa-github" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>

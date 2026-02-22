@@ -1,0 +1,47 @@
+{% comment %}
+  Agent Portfolio Showcase section with category filter and responsive grid.
+{% endcomment %}
+<section class="agent-showcase" id="agent-portfolio">
+    <div class="agent-showcase-header">
+        <h2 class="agent-showcase-title">Agent Portfolio</h2>
+        <p class="agent-showcase-subtitle">Tools, servers, and platforms I'm building to advance the agentic AI ecosystem.</p>
+    </div>
+
+    <div class="agent-filter-bar" role="toolbar" aria-label="Filter projects by category">
+        <button class="agent-filter-btn active" data-filter="all">All</button>
+        <button class="agent-filter-btn" data-filter="mcp-server">MCP Server</button>
+        <button class="agent-filter-btn" data-filter="multi-agent">Multi-Agent</button>
+        <button class="agent-filter-btn" data-filter="governance">Governance</button>
+        <button class="agent-filter-btn" data-filter="infrastructure">Infrastructure</button>
+        <button class="agent-filter-btn" data-filter="tools">Tools</button>
+        <button class="agent-filter-btn" data-filter="platform">Platform</button>
+    </div>
+
+    <div class="agent-grid" id="agentGrid">
+        {% for project in site.data.agent_projects %}
+            {% include agent_card.html project=project %}
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const filterBtns = document.querySelectorAll('.agent-filter-btn');
+    const cards = document.querySelectorAll('.agent-card');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const filter = btn.dataset.filter;
+            cards.forEach(card => {
+                if (filter === 'all' || card.dataset.category === filter) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+});
+</script>

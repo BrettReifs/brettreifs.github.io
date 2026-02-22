@@ -1,97 +1,260 @@
 # _data/projects.yml
-# Store your project details here in YAML format.
-# Edit this file to add, remove, or modify projects.
-# GitHub Pages will automatically rebuild the site when this file changes.
+# Real portfolio projects — agent ecosystem work
 
-# Notes on YAML format:
-# - Indentation (use 2 spaces) is crucial.
-# - Use '-' for list items.
-# - Use 'key: value' pairs.
-# - Strings don't usually need quotes unless they contain special characters.
-# - For multi-line strings (like fullDescription), use '|' or '>'.
-#   '|' preserves newlines, '>' folds newlines into spaces (use '|' for HTML).
+# --- SHIPPED / RELEASED ---
 
-- id: "1711999819777" # Keep a unique ID (can be timestamp or custom string)
-  title: "Advanced Analytics Dashboard"
-  category: "epic" # epic, feature, or mini
-  description: "A comprehensive dashboard showcasing complex data visualization techniques and interactive filtering. Built with modern web technologies."
-  fullDescription: | # Use '|' to preserve HTML newlines and structure
-    <p>This project demonstrates advanced data handling and visualization using D3.js and React. It features:</p>
+- id: "excalidraw-mcp"
+  title: "Excalidraw MCP"
+  category: "epic"
+  description: "MCP server that gives AI agents the power to create, edit, and stream hand-drawn diagrams via Excalidraw. The bridge between textual reasoning and visual communication."
+  fullDescription: |
+    <p>Agents can reason, but they can't draw — until now. Excalidraw MCP exposes the full Excalidraw canvas through the Model Context Protocol, enabling any LLM to sketch architecture diagrams, flowcharts, and wireframes on the fly.</p>
     <ul>
-      <li>Real-time data updates (simulated)</li>
-      <li>Multiple chart types (bar, line, pie, scatter)</li>
-      <li>Interactive filtering and drill-down capabilities</li>
-      <li>Responsive design for various screen sizes</li>
+      <li>Fullscreen editing with real-time streaming</li>
+      <li>5 MCP tools: create_view, export_to_excalidraw, save/read checkpoints</li>
+      <li>Deploy to Vercel or run locally</li>
+      <li>Works with Claude Desktop, Cursor, and any MCP client</li>
     </ul>
-    <p>The goal was to create a highly performant and visually appealing interface for complex datasets.</p>
   tags:
-    - "Data Viz"
+    - "MCP"
+    - "Excalidraw"
+    - "TypeScript"
+    - "Diagrams"
+  image: ""
+  githubUrl: "https://github.com/brettreifs/excalidraw-mcp"
+  videoUrl: ""
+  published: true
+  status: "released"
+
+- id: "mcp-app-media"
+  title: "MCP App Media"
+  category: "feature"
+  description: "MCP server for Spotify DJ control and Suno AI music generation. Give your AI agent a soundtrack."
+  fullDescription: |
+    <p>Why should agents be limited to text? MCP App Media lets AI agents control Spotify playback and generate music via Suno AI, all through standardized MCP tool calls.</p>
+    <ul>
+      <li>12 MCP tools (8 Spotify + 4 Suno)</li>
+      <li>Pinnable media panel web UI</li>
+      <li>Full playback control: play, pause, skip, queue, search</li>
+      <li>AI-powered music generation via Suno</li>
+    </ul>
+  tags:
+    - "MCP"
+    - "Spotify"
+    - "Suno AI"
+    - "TypeScript"
+  image: ""
+  githubUrl: "https://github.com/brettreifs/mcp-app-media"
+  videoUrl: ""
+  published: true
+  status: "released"
+
+- id: "model-modes"
+  title: "Model Modes"
+  category: "feature"
+  description: "VS Code extension providing model-aware visual skins for GPT, Claude, Gemini, and Llama — with a HUD showing active tools."
+  fullDescription: |
+    <p>When you switch between AI models, your IDE should reflect it. Model Modes transforms your VS Code environment with model-specific themes, color schemes, and a heads-up display showing which tools are active.</p>
+    <ul>
+      <li>Visual skins for GPT, Claude, Gemini, Llama</li>
+      <li>Real-time HUD for active model tools</li>
+      <li>Auto-detect which model is in use</li>
+      <li>Published VSIX packages ready to install</li>
+    </ul>
+  tags:
+    - "VS Code"
+    - "Extension"
+    - "DX"
+    - "TypeScript"
+  image: ""
+  githubUrl: "https://github.com/brettreifs/model-modes"
+  videoUrl: ""
+  published: true
+  status: "released"
+
+# --- BUILDING NOW ---
+
+- id: "content-engine"
+  title: "Content Engine"
+  category: "feature"
+  description: "Automated pipeline that turns GitHub activity into polished video content and social posts via Remotion — the meta-project that promotes itself."
+  fullDescription: |
+    <p>Content Engine monitors your GitHub repos and automatically generates scripts, renders animated explainer videos with Remotion, and publishes to LinkedIn, Twitter, and YouTube.</p>
+    <ul>
+      <li>4 Remotion video templates: Architecture Animation, Build-in-60s, Hot Take Cards, Metric Dashboards</li>
+      <li>LLM-powered script generation with viral hooks</li>
+      <li>GitHub webhook trigger + multi-platform publishing</li>
+      <li>Dry-run mode for testing the full pipeline</li>
+    </ul>
+  tags:
+    - "Remotion"
+    - "Automation"
+    - "AI"
+    - "TypeScript"
+  image: ""
+  githubUrl: "https://github.com/brettreifs/content-engine"
+  videoUrl: ""
+  published: true
+  status: "building"
+
+- id: "agent-sentinel"
+  title: "Agent Sentinel"
+  category: "epic"
+  description: "Governance framework that monitors AI agents for policy violations, prompt injection, secret leakage, and cost overruns. The security guard for your AI fleet."
+  fullDescription: |
+    <p>As agents gain more autonomy, someone needs to watch the watchers. Agent Sentinel provides enterprise-grade governance infrastructure with audit trails, policy enforcement, and kill switches.</p>
+    <ul>
+      <li>5 built-in rules: secret detection, injection defense, cost limits, rate limits, tool restrictions</li>
+      <li>MCP middleware for transparent monitoring</li>
+      <li>SQLite audit log with compliance report generation</li>
+      <li>Real-time React dashboard with violation timelines</li>
+    </ul>
+  tags:
+    - "Governance"
+    - "Security"
+    - "MCP"
+    - "Python"
+  image: ""
+  githubUrl: "https://github.com/brettreifs/agent-sentinel"
+  videoUrl: ""
+  published: true
+  status: "building"
+
+- id: "agentic-philosophers"
+  title: "Agentic Philosophers"
+  category: "feature"
+  description: "Multi-agent debate system with Researcher, Critic, Synthesizer, and Devil's Advocate agents collaborating in real-time via WebSocket."
+  fullDescription: |
+    <p>Four specialized AI agents debate any topic through structured rounds, with a live React UI streaming the conversation. The perfect testbed for multi-agent orchestration.</p>
+    <ul>
+      <li>4 agent roles with distinct reasoning styles</li>
+      <li>Real-time WebSocket streaming to React frontend</li>
+      <li>Color-coded agent messages with round tracking</li>
+      <li>Works fully in mock mode — no API keys needed</li>
+    </ul>
+  tags:
+    - "Multi-Agent"
+    - "WebSocket"
+    - "CrewAI"
     - "React"
-    - "D3.js"
-    - "Interactive"
-    - "Dashboard"
-  image: "https://placehold.co/800x600/6a3093/ffffff?text=Analytics+Dashboard" # Replace with your image path e.g., /assets/images/dashboard.jpg
-  githubUrl: "https://github.com/your-username/analytics-dashboard" # Optional
-  videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" # Optional YouTube/Vimeo
-  published: true # Set to false to hide from the site
+  image: ""
+  githubUrl: "https://github.com/brettreifs/agentic-philosophers"
+  videoUrl: ""
+  published: true
+  status: "building"
 
-- id: "1711999829888"
-  title: "3D Object Manipulator"
+- id: "agent-lens"
+  title: "Agent Lens"
   category: "feature"
-  description: "Explore and interact with 3D models directly in the browser using Three.js. Features rotation, zoom, and basic animations."
+  description: "Drop-in observability for MCP agents — tracks runs, tool calls, tokens, cost, and latency. Datadog for AI agents."
   fullDescription: |
-    <p>Leveraging the power of Three.js and WebGL, this application allows users to load and manipulate 3D models.</p>
-    <p>Key features include:</p>
+    <p>You can't improve what you can't measure. Agent Lens is a TypeScript monorepo that instruments any MCP agent with zero-config observability.</p>
     <ul>
-      <li>Mouse controls for rotation and zooming</li>
-      <li>Support for common 3D model formats (e.g., GLTF)</li>
-      <li>Basic lighting and material adjustments</li>
+      <li>Zero-dependency core middleware SDK</li>
+      <li>Express API with SQLite metrics storage</li>
+      <li>React dashboard with Recharts visualizations</li>
+      <li>Real-time WebSocket event streaming</li>
     </ul>
-    <p>This project serves as a great starting point for web-based 3D experiences.</p>
-    <code>console.log('Hello 3D World!');</code>
   tags:
-    - "Three.js"
-    - "WebGL"
-    - "3D"
-    - "Interactive"
-  image: "https://placehold.co/600x400/0083b0/ffffff?text=3D+Manipulator" # Replace with e.g., /assets/images/manipulator.jpg
-  githubUrl: "https://github.com/your-username/3d-manipulator"
+    - "Observability"
+    - "MCP"
+    - "Monorepo"
+    - "TypeScript"
+  image: ""
+  githubUrl: "https://github.com/brettreifs/agent-lens"
   videoUrl: ""
   published: true
+  status: "building"
 
-- id: "1711999839999"
-  title: "Custom Form Controls"
-  category: "mini"
-  description: "A small library of accessible and styleable custom form controls (checkboxes, radios, selects) built with pure CSS and JS."
-  fullDescription: |
-    <p>This mini-project addresses the challenge of styling native HTML form elements consistently across browsers while maintaining accessibility.</p>
-    <p>It uses CSS pseudo-elements and minimal JavaScript to create visually appealing controls that degrade gracefully.</p>
-  tags:
-    - "CSS"
-    - "JavaScript"
-    - "Accessibility"
-    - "UI"
-  image: "https://placehold.co/400x300/f857a6/ffffff?text=Form+Controls" # Replace with e.g., /assets/images/forms.jpg
-  githubUrl: ""
-  videoUrl: ""
-  published: true
-
-- id: "1711999840000"
-  title: "Generative Art Explorer"
+- id: "model-router"
+  title: "Model Router"
   category: "feature"
-  description: "Create unique abstract art patterns using p5.js. Adjust parameters and see the results in real-time."
+  description: "Dynamic LLM orchestrator that routes tasks to Claude, GPT, Gemini, or Ollama based on cost, quality, and latency strategies."
   fullDescription: |
-    <p>An exploration into generative algorithms using the p5.js library. Users can tweak various parameters like color palettes, noise levels, and drawing modes to generate unique visual outputs.</p>
-    <p>Future improvements could include saving generated images or sharing parameter sets.</p>
+    <p>No single model is best at everything. Model Router brings the load-balancer pattern to AI — selecting the optimal model for each request with automatic fallback chains.</p>
+    <ul>
+      <li>5 model adapters: Claude, GPT, Gemini, Ollama, Mock</li>
+      <li>4 routing strategies: cost, quality, latency, task-matched</li>
+      <li>Built-in metrics tracking with SQLite + CSV export</li>
+      <li>FastAPI with full demo mode (no API keys needed)</li>
+    </ul>
   tags:
-    - "p5.js"
-    - "Generative Art"
-    - "Creative Coding"
-    - "JavaScript"
-  image: "https://placehold.co/600x400/11998e/ffffff?text=Generative+Art" # Replace with e.g., /assets/images/genart.jpg
-  githubUrl: "https://github.com/your-username/generative-art"
+    - "Routing"
+    - "Multi-Model"
+    - "FastAPI"
+    - "Python"
+  image: ""
+  githubUrl: "https://github.com/brettreifs/model-router"
   videoUrl: ""
   published: true
+  status: "building"
 
-# --- Add more projects below following the same structure ---
+- id: "pm-agent"
+  title: "PM Agent"
+  category: "mini"
+  description: "AI product manager that analyzes GitHub issues, clusters themes, generates user stories, and writes release notes."
+  fullDescription: |
+    <p>Product managers spend too much time on document formatting. PM Agent automates the mechanical parts so humans can focus on strategy and empathy.</p>
+    <ul>
+      <li>CLI with 4 commands: analyze, stories, priorities, release-notes</li>
+      <li>TF-IDF + HDBSCAN clustering for theme discovery</li>
+      <li>Auto-generated user stories in "As a... I want... So that..." format</li>
+      <li>Mock mode with 18 sample issues for instant demos</li>
+    </ul>
+  tags:
+    - "Product"
+    - "CLI"
+    - "NLP"
+    - "Python"
+  image: ""
+  githubUrl: "https://github.com/brettreifs/pm-agent"
+  videoUrl: ""
+  published: true
+  status: "building"
+
+- id: "ideas-agent"
+  title: "Ideas Agent"
+  category: "mini"
+  description: "RAG-powered second brain that ingests your markdown notes, finds hidden connections, and answers questions conversationally."
+  fullDescription: |
+    <p>Great ideas rarely arrive fully formed. Ideas Agent acts as an always-on thought partner that surfaces connections between your notes you didn't know existed.</p>
+    <ul>
+      <li>Markdown + YAML frontmatter ingestion with wiki-link extraction</li>
+      <li>ChromaDB vector store with TF-IDF fallback</li>
+      <li>FastAPI with /ask, /notes, /connections endpoints</li>
+      <li>Unlinked connection discovery via semantic similarity</li>
+    </ul>
+  tags:
+    - "RAG"
+    - "Knowledge"
+    - "ChromaDB"
+    - "Python"
+  image: ""
+  githubUrl: "https://github.com/brettreifs/ideas-agent"
+  videoUrl: ""
+  published: true
+  status: "building"
+
+- id: "agent-academy"
+  title: "Agent Academy"
+  category: "mini"
+  description: "Agent registry and marketplace — discover, compose, and invoke AI agents via AGENTS.md. The npm for agents."
+  fullDescription: |
+    <p>The gap between building an agent and making it discoverable is enormous. Agent Academy provides the registry, search, and composition layer the ecosystem needs.</p>
+    <ul>
+      <li>AGENTS.md parser for standardized agent definitions</li>
+      <li>SQLite + FTS5 full-text search across registered agents</li>
+      <li>Next.js UI with browse, search, and detail views</li>
+      <li>Self-referential — registers itself as an agent</li>
+    </ul>
+  tags:
+    - "Registry"
+    - "Next.js"
+    - "Platform"
+    - "FTS5"
+  image: ""
+  githubUrl: "https://github.com/brettreifs/agent-academy"
+  videoUrl: ""
+  published: true
+  status: "building"
 
