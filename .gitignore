@@ -172,3 +172,16 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Node
+node_modules/
+package-lock.json
+
+# Environment / secrets
+.env.local
+.env.production
+*.key
+*.pem
+
+# Output
+output/
