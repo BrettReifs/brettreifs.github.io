@@ -30,7 +30,7 @@
     - "Innovative"
     - "Real-Time"
   media: []
-  image: ""
+  image: "/assets/images/thumbs/excalidraw-mcp-thumb-342x192.webp"
   releaseDate: "2025-01-15"
   githubUrl: "https://github.com/brettreifs/excalidraw-mcp"
   videoUrl: ""
@@ -64,7 +64,7 @@
     - "Playful"
     - "Multi-Modal"
   media: []
-  image: ""
+  image: "/assets/images/thumbs/mcp-app-media-thumb-342x192.webp"
   releaseDate: "2025-02-10"
   githubUrl: "https://github.com/brettreifs/mcp-app-media"
   videoUrl: ""
@@ -97,7 +97,7 @@
     - "Developer-First"
     - "Elegant"
   media: []
-  image: ""
+  image: "/assets/images/thumbs/model-modes-thumb-342x192.webp"
   releaseDate: "2024-11-20"
   githubUrl: "https://github.com/brettreifs/model-modes"
   videoUrl: ""
@@ -132,7 +132,7 @@
     - "Viral"
     - "Self-Promoting"
   media: []
-  image: ""
+  image: "/assets/images/thumbs/content-engine-thumb-342x192.webp"
   releaseDate: "2025-04-01"
   githubUrl: "https://github.com/brettreifs/content-engine"
   videoUrl: ""
@@ -166,7 +166,7 @@
     - "Secure"
     - "Vigilant"
   media: []
-  image: ""
+  image: "/assets/images/thumbs/agent-sentinel-thumb-342x192.webp"
   releaseDate: "2025-03-15"
   githubUrl: "https://github.com/brettreifs/agent-sentinel"
   videoUrl: ""
@@ -199,7 +199,7 @@
     - "Collaborative"
     - "Live"
   media: []
-  image: ""
+  image: "/assets/images/thumbs/agentic-philosophers-thumb-342x192.webp"
   releaseDate: "2025-03-01"
   githubUrl: "https://github.com/brettreifs/agentic-philosophers"
   videoUrl: ""
@@ -233,7 +233,7 @@
     - "Zero-Config"
     - "Data-Driven"
   media: []
-  image: ""
+  image: "/assets/images/thumbs/agent-lens-thumb-342x192.webp"
   releaseDate: "2025-04-10"
   githubUrl: "https://github.com/brettreifs/agent-lens"
   videoUrl: ""
@@ -266,7 +266,7 @@
     - "Cost-Efficient"
     - "Adaptive"
   media: []
-  image: ""
+  image: "/assets/images/thumbs/model-router-thumb-342x192.webp"
   releaseDate: "2025-05-01"
   githubUrl: "https://github.com/brettreifs/model-router"
   videoUrl: ""
@@ -299,7 +299,7 @@
     - "Automated"
     - "Practical"
   media: []
-  image: ""
+  image: "/assets/images/thumbs/pm-agent-thumb-342x192.webp"
   releaseDate: "2025-04-20"
   githubUrl: "https://github.com/brettreifs/pm-agent"
   videoUrl: ""
@@ -332,7 +332,7 @@
     - "Connective"
     - "Conversational"
   media: []
-  image: ""
+  image: "/assets/images/thumbs/ideas-agent-thumb-342x192.webp"
   releaseDate: "2025-05-15"
   githubUrl: "https://github.com/brettreifs/ideas-agent"
   videoUrl: ""
@@ -365,7 +365,7 @@
     - "Composable"
     - "Community"
   media: []
-  image: ""
+  image: "/assets/images/thumbs/agent-academy-thumb-342x192.webp"
   releaseDate: "2025-06-01"
   githubUrl: "https://github.com/brettreifs/agent-academy"
   videoUrl: ""

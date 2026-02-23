@@ -1395,6 +1395,14 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible), [tabindex="0"]:fo
     border-radius: var(--border-radius);
 }
 
+.popup-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
 /* ================================ */
 /* REDUCED MOTION                    */
 /* ================================ */

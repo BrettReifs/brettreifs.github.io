@@ -73,7 +73,11 @@ title: Home
                     <!-- Hover Popup -->
                     <div class="popup-card" aria-hidden="true">
                         <div class="popup-thumbnail {{ g_class }}">
+                            {% if project.image %}
+                            <img class="popup-thumb-img" src="{{ project.image | relative_url }}" alt="{{ project.title }}" loading="lazy">
+                            {% else %}
                             <div class="popup-thumb-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
+                            {% endif %}
                             <span class="popup-brand">BRETTFLIX</span>
                             <div class="popup-title-overlay">{{ project.title }}</div>
                         </div>
@@ -136,7 +140,11 @@ title: Home
                     </div>
                     <div class="popup-card" aria-hidden="true">
                         <div class="popup-thumbnail {{ g_class }}">
+                            {% if project.image %}
+                            <img class="popup-thumb-img" src="{{ project.image | relative_url }}" alt="{{ project.title }}" loading="lazy">
+                            {% else %}
                             <div class="popup-thumb-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
+                            {% endif %}
                             <span class="popup-brand">BRETTFLIX</span>
                             <div class="popup-title-overlay">{{ project.title }}</div>
                         </div>
@@ -195,7 +203,11 @@ title: Home
                     </div>
                     <div class="popup-card" aria-hidden="true">
                         <div class="popup-thumbnail {{ g_class }}">
+                            {% if project.image %}
+                            <img class="popup-thumb-img" src="{{ project.image | relative_url }}" alt="{{ project.title }}" loading="lazy">
+                            {% else %}
                             <div class="popup-thumb-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
+                            {% endif %}
                             <span class="popup-brand">BRETTFLIX</span>
                             <div class="popup-title-overlay">{{ project.title }}</div>
                         </div>
@@ -246,7 +258,11 @@ title: Home
                     </div>
                     <div class="popup-card" aria-hidden="true">
                         <div class="popup-thumbnail {{ g_class }}">
+                            {% if project.image %}
+                            <img class="popup-thumb-img" src="{{ project.image | relative_url }}" alt="{{ project.title }}" loading="lazy">
+                            {% else %}
                             <div class="popup-thumb-bg"><i class="{{ project.heroIcon }}" aria-hidden="true"></i></div>
+                            {% endif %}
                             <span class="popup-brand">BRETTFLIX</span>
                             <div class="popup-title-overlay">{{ project.title }}</div>
                         </div>
