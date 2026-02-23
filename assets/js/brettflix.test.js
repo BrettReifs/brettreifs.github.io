@@ -127,9 +127,16 @@ function buildTestHTML() {
     </div>
 </nav>
 <main id="main-content">
-    <div class="hero-content" style="opacity:0">
-        <h1>Welcome to BRETTFLIX</h1>
-    </div>
+    <section class="hero-billboard" aria-label="Featured project">
+        <div class="hero-bg">
+            <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                <source src="/assets/video/hero-reel.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-content" style="opacity:0">
+            <h1>Welcome to BRETTFLIX</h1>
+        </div>
+    </section>
 
     <script id="project-data" type="application/json">${JSON.stringify(SAMPLE_PROJECTS)}</script>
 
@@ -468,6 +475,45 @@ describe('Modal Hero Image', () => {
             const hasImgCards = document.querySelectorAll('.modal-related-thumb img');
             assert(hasImgCards.length > 0, 'Related cards with images show <img> elements');
         }
+    });
+});
+
+// ──────────────────────────────────────────────────────────────────────────────
+//  Hero Video Responsive Tests
+// ──────────────────────────────────────────────────────────────────────────────
+describe('Hero Video Responsive', () => {
+    it('hero billboard section exists', () => {
+        resetDOM();
+        const billboard = document.querySelector('.hero-billboard');
+        assert(billboard !== null, 'Hero billboard section exists');
+    });
+
+    it('hero video element exists with correct attributes', () => {
+        resetDOM();
+        const video = document.querySelector('.hero-video');
+        assert(video !== null, 'Hero video element exists');
+        assert(video.hasAttribute('autoplay'), 'Video has autoplay');
+        assert(video.hasAttribute('muted'), 'Video has muted');
+        assert(video.hasAttribute('loop'), 'Video has loop');
+        assert(video.hasAttribute('playsinline'), 'Video has playsinline');
+        assert(video.getAttribute('preload') === 'metadata', 'Video preload is metadata (not auto)');
+        assert(video.getAttribute('aria-hidden') === 'true', 'Video is aria-hidden');
+    });
+
+    it('hero-bg contains the video', () => {
+        resetDOM();
+        const heroBg = document.querySelector('.hero-bg');
+        assert(heroBg !== null, 'Hero background container exists');
+        const video = heroBg.querySelector('.hero-video');
+        assert(video !== null, 'Video is inside .hero-bg container');
+    });
+
+    it('hero video has source with mp4 type', () => {
+        resetDOM();
+        const source = document.querySelector('.hero-video source');
+        assert(source !== null, 'Video has a <source> element');
+        assert(source.getAttribute('type') === 'video/mp4', 'Source type is video/mp4');
+        assert(source.getAttribute('src').includes('.mp4'), 'Source src points to .mp4 file');
     });
 });
 

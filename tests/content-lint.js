@@ -91,6 +91,18 @@ const ids = projects.map(p => p.id);
 const uniqueIds = new Set(ids);
 assert(ids.length === uniqueIds.size, `Duplicate project IDs found: ${ids.filter((id, i) => ids.indexOf(id) !== i)}`);
 
+// CSS hero video responsive check
+const cssPath = path.join(ROOT, 'assets', 'css', 'style.css');
+if (fs.existsSync(cssPath)) {
+    const css = fs.readFileSync(cssPath, 'utf8');
+    assert(css.includes('object-fit: cover') || css.includes('object-fit:cover'),
+        'CSS must use object-fit: cover for responsive media scaling');
+    assert(!css.match(/\.hero-video\s*\{[^}]*width:\s*auto/),
+        'hero-video must NOT use width: auto (causes 4K overflow)');
+    assert(!css.match(/\.hero-video\s*\{[^}]*min-width:\s*100%/),
+        'hero-video must NOT use min-width: 100% (causes overflow on ultrawide)');
+}
+
 // Report
 console.log(`\n📋 Content Lint Results`);
 console.log(`========================`);
