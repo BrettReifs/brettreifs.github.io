@@ -225,8 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hero
         const heroGrad = document.getElementById('modalHeroGradient');
         const heroIcon = document.getElementById('modalHeroIcon');
-        if (heroGrad) heroGrad.style.background = `var(--gradient-${gIdx})`;
-        if (heroIcon) heroIcon.className = `${project.heroIcon} modal-hero-icon`;
 
         // Hero image (layered behind gradient+text)
         const heroEl = document.getElementById('modalHero');
@@ -240,6 +238,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 img.alt = `${project.title} hero background`;
                 img.loading = 'eager';
                 heroEl.insertBefore(img, heroEl.firstChild);
+                // Clear solid gradient so image shows through; ::after still provides text-readability overlay
+                if (heroGrad) heroGrad.style.background = 'transparent';
+                if (heroIcon) heroIcon.style.display = 'none';
+            } else {
+                // Fallback: solid gradient + icon
+                if (heroGrad) heroGrad.style.background = `var(--gradient-${gIdx})`;
+                if (heroIcon) { heroIcon.className = `${project.heroIcon} modal-hero-icon`; heroIcon.style.display = ''; }
             }
         }
 

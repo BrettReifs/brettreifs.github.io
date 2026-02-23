@@ -93,7 +93,9 @@ const SAMPLE_PROJECTS = [
         descriptors: ['Interactive', 'Modern'],
         media: [{ type: 'trailer', title: 'Demo Video' }],
         githubUrl: 'https://github.com/test/project1',
-        videoUrl: 'https://youtube.com/watch?v=123'
+        videoUrl: 'https://youtube.com/watch?v=123',
+        image: '/assets/images/thumbs/test-project-1-thumb-342x192.webp',
+        heroImage: '/assets/images/hero/test-project-1-hero-1280x720.webp'
     },
     {
         id: 'test-project-2',
@@ -403,6 +405,69 @@ describe('Modal Open/Close', () => {
         assert(title === 'Test Project Two', 'Modal shows correct project title');
         const desc = document.getElementById('modalDescription').textContent;
         assert(desc === 'Another test project.', 'Modal shows correct description');
+    });
+});
+
+// ──────────────────────────────────────────────────────────────────────────────
+//  Modal Hero Image Tests
+// ──────────────────────────────────────────────────────────────────────────────
+describe('Modal Hero Image', () => {
+    it('hero image is injected when project has heroImage', () => {
+        resetDOM();
+        openModalViaButton('test-project-1');
+        const heroImg = document.querySelector('#modalHero .modal-hero-img');
+        assert(heroImg !== null, 'Modal hero has <img class="modal-hero-img">');
+        assert(heroImg.tagName === 'IMG', 'Hero image is an IMG element');
+        assert(heroImg.src.includes('test-project-1-hero'), 'Hero image src matches project heroImage path');
+    });
+
+    it('hero gradient is transparent when heroImage is present', () => {
+        resetDOM();
+        openModalViaButton('test-project-1');
+        const heroGrad = document.getElementById('modalHeroGradient');
+        assert(heroGrad.style.background === 'transparent', 'Gradient is transparent when hero image is shown');
+    });
+
+    it('hero icon is hidden when heroImage is present', () => {
+        resetDOM();
+        openModalViaButton('test-project-1');
+        const heroIcon = document.getElementById('modalHeroIcon');
+        assert(heroIcon.style.display === 'none', 'Hero icon is hidden when hero image is shown');
+    });
+
+    it('falls back to gradient+icon when no heroImage', () => {
+        resetDOM();
+        openModalViaButton('test-project-2');
+        const heroImg = document.querySelector('#modalHero .modal-hero-img');
+        assert(heroImg === null, 'No hero image when project lacks heroImage');
+        const heroGrad = document.getElementById('modalHeroGradient');
+        assert(heroGrad.style.background !== 'transparent', 'Gradient is NOT transparent for fallback');
+        const heroIcon = document.getElementById('modalHeroIcon');
+        assert(heroIcon.style.display !== 'none', 'Hero icon is visible for fallback');
+    });
+
+    it('hero image is replaced when switching projects', () => {
+        resetDOM();
+        openModalViaButton('test-project-1');
+        let heroImg = document.querySelector('#modalHero .modal-hero-img');
+        assert(heroImg !== null, 'First project has hero image');
+        closeModalViaButton();
+        openModalViaButton('test-project-2');
+        heroImg = document.querySelector('#modalHero .modal-hero-img');
+        assert(heroImg === null, 'Second project (no heroImage) removes previous hero image');
+    });
+
+    it('related cards show thumbnail images when available', () => {
+        resetDOM();
+        openModalViaButton('test-project-2');
+        const relatedThumbs = document.querySelectorAll('.modal-related-thumb img');
+        // test-project-1 has image and is related to test-project-2 (both share JavaScript tag)
+        // Check if at least one related card has an img
+        const relatedCards = document.querySelectorAll('.modal-related-card');
+        if (relatedCards.length > 0) {
+            const hasImgCards = document.querySelectorAll('.modal-related-thumb img');
+            assert(hasImgCards.length > 0, 'Related cards with images show <img> elements');
+        }
     });
 });
 
