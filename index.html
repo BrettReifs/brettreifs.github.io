@@ -16,7 +16,7 @@ title: Home
 {% if featured %}
 <section class="hero-billboard" aria-label="Featured project">
     <div class="hero-bg">
-        <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
             <source src="{{ '/assets/video/hero-reel.mp4' | relative_url }}" type="video/mp4">
         </video>
         <div class="hero-bg-gradient" style="background: var(--gradient-1);"></div>
@@ -54,7 +54,7 @@ title: Home
 <!-- ===== CAROUSEL: SHIPPED ===== -->
 {% assign shipped = published | where: "status", "released" %}
 {% if shipped.size > 0 %}
-<section class="carousel-section" aria-label="Shipped projects">
+<section class="carousel-section" aria-roledescription="carousel" aria-label="Shipped projects">
     <h2 class="carousel-title">Shipped</h2>
     <div class="carousel-wrapper">
         <button class="carousel-arrow carousel-arrow--left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
@@ -83,12 +83,12 @@ title: Home
                         </div>
                         <div class="popup-controls">
                             <div class="popup-buttons">
-                                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="popup-btn popup-btn--play" title="Explore Project"><i class="fas fa-play"></i></a>
+                                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="popup-btn popup-btn--play" title="Explore Project" aria-label="Explore {{ project.title }}"><i class="fas fa-play"></i></a>
                                 {% if project.githubUrl %}
-                                <a href="{{ project.githubUrl }}" class="popup-btn" title="View on GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                                <a href="{{ project.githubUrl }}" class="popup-btn" title="View on GitHub" aria-label="View {{ project.title }} on GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
                                 {% endif %}
                             </div>
-                            <button class="popup-btn popup-btn--expand" title="More Info" data-modal-id="{{ project.id }}"><i class="fas fa-chevron-down"></i></button>
+                            <button class="popup-btn popup-btn--expand" title="More Info" aria-label="More info about {{ project.title }}" data-modal-id="{{ project.id }}"><i class="fas fa-chevron-down"></i></button>
                         </div>
                         <div class="popup-meta">
                             {% if project.status == "released" %}
@@ -122,7 +122,7 @@ title: Home
     {% endfor %}
 {% endfor %}
 {% if mcp_tools.size > 0 %}
-<section class="carousel-section" aria-label="MCP Tools">
+<section class="carousel-section" aria-roledescription="carousel" aria-label="MCP Tools">
     <h2 class="carousel-title">MCP Tools</h2>
     <div class="carousel-wrapper">
         <button class="carousel-arrow carousel-arrow--left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
@@ -150,12 +150,12 @@ title: Home
                         </div>
                         <div class="popup-controls">
                             <div class="popup-buttons">
-                                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="popup-btn popup-btn--play" title="Explore Project"><i class="fas fa-play"></i></a>
+                                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="popup-btn popup-btn--play" title="Explore Project" aria-label="Explore {{ project.title }}"><i class="fas fa-play"></i></a>
                                 {% if project.githubUrl %}
-                                <a href="{{ project.githubUrl }}" class="popup-btn" title="View on GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                                <a href="{{ project.githubUrl }}" class="popup-btn" title="View on GitHub" aria-label="View {{ project.title }} on GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
                                 {% endif %}
                             </div>
-                            <button class="popup-btn popup-btn--expand" title="More Info" data-modal-id="{{ project.id }}"><i class="fas fa-chevron-down"></i></button>
+                            <button class="popup-btn popup-btn--expand" title="More Info" aria-label="More info about {{ project.title }}" data-modal-id="{{ project.id }}"><i class="fas fa-chevron-down"></i></button>
                         </div>
                         <div class="popup-meta">
                             {% if project.status == "released" %}
@@ -185,7 +185,7 @@ title: Home
     {% endfor %}
 {% endfor %}
 {% if ai_agents.size > 0 %}
-<section class="carousel-section" aria-label="AI Agents">
+<section class="carousel-section" aria-roledescription="carousel" aria-label="AI Agents">
     <h2 class="carousel-title">AI Agents</h2>
     <div class="carousel-wrapper">
         <button class="carousel-arrow carousel-arrow--left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
@@ -213,12 +213,12 @@ title: Home
                         </div>
                         <div class="popup-controls">
                             <div class="popup-buttons">
-                                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="popup-btn popup-btn--play" title="Explore Project"><i class="fas fa-play"></i></a>
+                                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="popup-btn popup-btn--play" title="Explore Project" aria-label="Explore {{ project.title }}"><i class="fas fa-play"></i></a>
                                 {% if project.githubUrl %}
-                                <a href="{{ project.githubUrl }}" class="popup-btn" title="View on GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                                <a href="{{ project.githubUrl }}" class="popup-btn" title="View on GitHub" aria-label="View {{ project.title }} on GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
                                 {% endif %}
                             </div>
-                            <button class="popup-btn popup-btn--expand" title="More Info" data-modal-id="{{ project.id }}"><i class="fas fa-chevron-down"></i></button>
+                            <button class="popup-btn popup-btn--expand" title="More Info" aria-label="More info about {{ project.title }}" data-modal-id="{{ project.id }}"><i class="fas fa-chevron-down"></i></button>
                         </div>
                         <div class="popup-meta">
                             {% if project.status == "released" %}
@@ -240,7 +240,7 @@ title: Home
 
 <!-- ===== CAROUSEL: ALL PROJECTS ===== -->
 {% if published.size > 0 %}
-<section class="carousel-section" aria-label="All projects">
+<section class="carousel-section" aria-roledescription="carousel" aria-label="All projects">
     <h2 class="carousel-title">All Projects</h2>
     <div class="carousel-wrapper">
         <button class="carousel-arrow carousel-arrow--left" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
@@ -268,12 +268,12 @@ title: Home
                         </div>
                         <div class="popup-controls">
                             <div class="popup-buttons">
-                                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="popup-btn popup-btn--play" title="Explore Project"><i class="fas fa-play"></i></a>
+                                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="popup-btn popup-btn--play" title="Explore Project" aria-label="Explore {{ project.title }}"><i class="fas fa-play"></i></a>
                                 {% if project.githubUrl %}
-                                <a href="{{ project.githubUrl }}" class="popup-btn" title="View on GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                                <a href="{{ project.githubUrl }}" class="popup-btn" title="View on GitHub" aria-label="View {{ project.title }} on GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
                                 {% endif %}
                             </div>
-                            <button class="popup-btn popup-btn--expand" title="More Info" data-modal-id="{{ project.id }}"><i class="fas fa-chevron-down"></i></button>
+                            <button class="popup-btn popup-btn--expand" title="More Info" aria-label="More info about {{ project.title }}" data-modal-id="{{ project.id }}"><i class="fas fa-chevron-down"></i></button>
                         </div>
                         <div class="popup-meta">
                             {% if project.status == "released" %}

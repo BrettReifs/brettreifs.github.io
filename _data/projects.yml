@@ -31,6 +31,7 @@
     - "Real-Time"
   media: []
   image: "/assets/images/thumbs/excalidraw-mcp-thumb-342x192.webp"
+  heroImage: "/assets/images/hero/excalidraw-mcp-hero-1280x720.webp"
   releaseDate: "2025-01-15"
   githubUrl: "https://github.com/brettreifs/excalidraw-mcp"
   videoUrl: ""
@@ -65,6 +66,7 @@
     - "Multi-Modal"
   media: []
   image: "/assets/images/thumbs/mcp-app-media-thumb-342x192.webp"
+  heroImage: "/assets/images/hero/mcp-app-media-hero-1280x720.webp"
   releaseDate: "2025-02-10"
   githubUrl: "https://github.com/brettreifs/mcp-app-media"
   videoUrl: ""
@@ -98,6 +100,7 @@
     - "Elegant"
   media: []
   image: "/assets/images/thumbs/model-modes-thumb-342x192.webp"
+  heroImage: "/assets/images/hero/model-modes-hero-1280x720.webp"
   releaseDate: "2024-11-20"
   githubUrl: "https://github.com/brettreifs/model-modes"
   videoUrl: ""
@@ -133,6 +136,7 @@
     - "Self-Promoting"
   media: []
   image: "/assets/images/thumbs/content-engine-thumb-342x192.webp"
+  heroImage: "/assets/images/hero/content-engine-hero-1280x720.webp"
   releaseDate: "2025-04-01"
   githubUrl: "https://github.com/brettreifs/content-engine"
   videoUrl: ""
@@ -167,6 +171,7 @@
     - "Vigilant"
   media: []
   image: "/assets/images/thumbs/agent-sentinel-thumb-342x192.webp"
+  heroImage: "/assets/images/hero/agent-sentinel-hero-1280x720.webp"
   releaseDate: "2025-03-15"
   githubUrl: "https://github.com/brettreifs/agent-sentinel"
   videoUrl: ""
@@ -200,6 +205,7 @@
     - "Live"
   media: []
   image: "/assets/images/thumbs/agentic-philosophers-thumb-342x192.webp"
+  heroImage: "/assets/images/hero/agentic-philosophers-hero-1280x720.webp"
   releaseDate: "2025-03-01"
   githubUrl: "https://github.com/brettreifs/agentic-philosophers"
   videoUrl: ""
@@ -234,6 +240,7 @@
     - "Data-Driven"
   media: []
   image: "/assets/images/thumbs/agent-lens-thumb-342x192.webp"
+  heroImage: "/assets/images/hero/agent-lens-hero-1280x720.webp"
   releaseDate: "2025-04-10"
   githubUrl: "https://github.com/brettreifs/agent-lens"
   videoUrl: ""
@@ -267,6 +274,7 @@
     - "Adaptive"
   media: []
   image: "/assets/images/thumbs/model-router-thumb-342x192.webp"
+  heroImage: "/assets/images/hero/model-router-hero-1280x720.webp"
   releaseDate: "2025-05-01"
   githubUrl: "https://github.com/brettreifs/model-router"
   videoUrl: ""
@@ -300,6 +308,7 @@
     - "Practical"
   media: []
   image: "/assets/images/thumbs/pm-agent-thumb-342x192.webp"
+  heroImage: "/assets/images/hero/pm-agent-hero-1280x720.webp"
   releaseDate: "2025-04-20"
   githubUrl: "https://github.com/brettreifs/pm-agent"
   videoUrl: ""
@@ -333,6 +342,7 @@
     - "Conversational"
   media: []
   image: "/assets/images/thumbs/ideas-agent-thumb-342x192.webp"
+  heroImage: "/assets/images/hero/ideas-agent-hero-1280x720.webp"
   releaseDate: "2025-05-15"
   githubUrl: "https://github.com/brettreifs/ideas-agent"
   videoUrl: ""
@@ -366,6 +376,7 @@
     - "Community"
   media: []
   image: "/assets/images/thumbs/agent-academy-thumb-342x192.webp"
+  heroImage: "/assets/images/hero/agent-academy-hero-1280x720.webp"
   releaseDate: "2025-06-01"
   githubUrl: "https://github.com/brettreifs/agent-academy"
   videoUrl: ""

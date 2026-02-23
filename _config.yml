@@ -16,7 +16,8 @@ theme: minima # Optional: You can start with a theme or build from scratch. Remo
 # If not using a theme, ensure you have default layouts and necessary CSS.
 
 plugins:
-  - jekyll-feed # Optional: Creates an Atom feed (useful for blogs, less so for portfolios)
+  - jekyll-feed
+  - jekyll-sitemap
   # Add other plugins here if needed
 
 # Exclude from processing

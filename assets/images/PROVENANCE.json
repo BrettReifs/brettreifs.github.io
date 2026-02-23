@@ -1,0 +1,184 @@
+{
+  "generatedAt": "2025-07-14",
+  "generator": "BrettReifs/content-engine",
+  "model": "Google Imagen 4 (imagen-4.0-generate-001)",
+  "license": "All images are AI-generated for portfolio use",
+  "assets": [
+    {
+      "projectId": "excalidraw-mcp",
+      "type": "thumbnail",
+      "files": ["excalidraw-mcp-thumb-342x192.webp", "excalidraw-mcp-thumb-480x270.webp", "excalidraw-mcp-thumb-665x374.webp"],
+      "prompt": "A cinematic 16:9 composition on a dark charcoal background with glowing translucent blue holographic hand-drawn whiteboard",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "excalidraw-mcp",
+      "type": "hero",
+      "files": ["excalidraw-mcp-hero-768x432.webp", "excalidraw-mcp-hero-1280x720.webp", "excalidraw-mcp-hero-1920x1080.webp"],
+      "prompt": "Wide cinematic 16:9 shot of a futuristic workspace with Excalidraw-style whiteboard",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "mcp-app-media",
+      "type": "thumbnail",
+      "files": ["mcp-app-media-thumb-342x192.webp", "mcp-app-media-thumb-480x270.webp", "mcp-app-media-thumb-665x374.webp"],
+      "prompt": "A cinematic 16:9 dark scene with glowing vinyl record on futuristic turntable",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "mcp-app-media",
+      "type": "hero",
+      "files": ["mcp-app-media-hero-768x432.webp", "mcp-app-media-hero-1280x720.webp", "mcp-app-media-hero-1920x1080.webp"],
+      "prompt": "Wide cinematic 16:9 composition with futuristic DJ booth and holographic UI",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "model-modes",
+      "type": "thumbnail",
+      "files": ["model-modes-thumb-342x192.webp", "model-modes-thumb-480x270.webp", "model-modes-thumb-665x374.webp"],
+      "prompt": "Cinematic 16:9 dark composition with four floating translucent code editor panels",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "model-modes",
+      "type": "hero",
+      "files": ["model-modes-hero-768x432.webp", "model-modes-hero-1280x720.webp", "model-modes-hero-1920x1080.webp"],
+      "prompt": "Wide 16:9 cinematic shot of developer workspace with VS Code-style editor",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "content-engine",
+      "type": "thumbnail",
+      "files": ["content-engine-thumb-342x192.webp", "content-engine-thumb-480x270.webp", "content-engine-thumb-665x374.webp"],
+      "prompt": "Cinematic 16:9 dark scene with miniature futuristic factory assembly line",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "content-engine",
+      "type": "hero",
+      "files": ["content-engine-hero-768x432.webp", "content-engine-hero-1280x720.webp", "content-engine-hero-1920x1080.webp"],
+      "prompt": "Wide cinematic 16:9 view of automated media factory with vertical pipeline",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "agent-sentinel",
+      "type": "thumbnail",
+      "files": ["agent-sentinel-thumb-342x192.webp", "agent-sentinel-thumb-480x270.webp", "agent-sentinel-thumb-665x374.webp"],
+      "prompt": "Cinematic 16:9 dark composition with glowing shield emblem in hexagonal grid",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "agent-sentinel",
+      "type": "hero",
+      "files": ["agent-sentinel-hero-768x432.webp", "agent-sentinel-hero-1280x720.webp", "agent-sentinel-hero-1920x1080.webp"],
+      "prompt": "Wide 16:9 cinematic command center with holographic security dashboard",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "agentic-philosophers",
+      "type": "thumbnail",
+      "files": ["agentic-philosophers-thumb-342x192.webp", "agentic-philosophers-thumb-480x270.webp", "agentic-philosophers-thumb-665x374.webp"],
+      "prompt": "Cinematic 16:9 dark scene with four distinct glowing orbs in diamond pattern",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "agentic-philosophers",
+      "type": "hero",
+      "files": ["agentic-philosophers-hero-768x432.webp", "agentic-philosophers-hero-1280x720.webp", "agentic-philosophers-hero-1920x1080.webp"],
+      "prompt": "Wide 16:9 cinematic amphitheater with four floating AI agent avatars",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "agent-lens",
+      "type": "thumbnail",
+      "files": ["agent-lens-thumb-342x192.webp", "agent-lens-thumb-480x270.webp", "agent-lens-thumb-665x374.webp"],
+      "prompt": "Cinematic 16:9 dark composition with floating circular lens and data stream",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "agent-lens",
+      "type": "hero",
+      "files": ["agent-lens-hero-768x432.webp", "agent-lens-hero-1280x720.webp", "agent-lens-hero-1920x1080.webp"],
+      "prompt": "Wide 16:9 cinematic data visualization with holographic dashboard",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "model-router",
+      "type": "thumbnail",
+      "files": ["model-router-thumb-342x192.webp", "model-router-thumb-480x270.webp", "model-router-thumb-665x374.webp"],
+      "prompt": "Cinematic 16:9 dark scene with glowing central routing hub and branching connections",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "model-router",
+      "type": "hero",
+      "files": ["model-router-hero-768x432.webp", "model-router-hero-1280x720.webp", "model-router-hero-1920x1080.webp"],
+      "prompt": "Wide 16:9 cinematic network visualization with neural routing diagram",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "pm-agent",
+      "type": "thumbnail",
+      "files": ["pm-agent-thumb-342x192.webp", "pm-agent-thumb-480x270.webp", "pm-agent-thumb-665x374.webp"],
+      "prompt": "Cinematic 16:9 dark composition with scattered sticky notes flowing into organizing funnel",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "pm-agent",
+      "type": "hero",
+      "files": ["pm-agent-hero-768x432.webp", "pm-agent-hero-1280x720.webp", "pm-agent-hero-1920x1080.webp"],
+      "prompt": "Wide 16:9 cinematic workspace with virtual kanban board",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "ideas-agent",
+      "type": "thumbnail",
+      "files": ["ideas-agent-thumb-342x192.webp", "ideas-agent-thumb-480x270.webp", "ideas-agent-thumb-665x374.webp"],
+      "prompt": "Cinematic 16:9 dark scene with constellation of floating markdown document icons",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "ideas-agent",
+      "type": "hero",
+      "files": ["ideas-agent-hero-768x432.webp", "ideas-agent-hero-1280x720.webp", "ideas-agent-hero-1920x1080.webp"],
+      "prompt": "Wide 16:9 cinematic mind-map visualization with connected note cards",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "agent-academy",
+      "type": "thumbnail",
+      "files": ["agent-academy-thumb-342x192.webp", "agent-academy-thumb-480x270.webp", "agent-academy-thumb-665x374.webp"],
+      "prompt": "Cinematic 16:9 dark composition with floating hexagonal grid of agent cards",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    },
+    {
+      "projectId": "agent-academy",
+      "type": "hero",
+      "files": ["agent-academy-hero-768x432.webp", "agent-academy-hero-1280x720.webp", "agent-academy-hero-1920x1080.webp"],
+      "prompt": "Wide 16:9 cinematic digital marketplace with floating agent registry cards",
+      "model": "imagen-4.0-generate-001",
+      "date": "2025-07-14"
+    }
+  ]
+}

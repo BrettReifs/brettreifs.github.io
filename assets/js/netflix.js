@@ -228,6 +228,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (heroGrad) heroGrad.style.background = `var(--gradient-${gIdx})`;
         if (heroIcon) heroIcon.className = `${project.heroIcon} modal-hero-icon`;
 
+        // Hero image (layered behind gradient+text)
+        const heroEl = document.getElementById('modalHero');
+        if (heroEl) {
+            const existingImg = heroEl.querySelector('.modal-hero-img');
+            if (existingImg) existingImg.remove();
+            if (project.heroImage) {
+                const img = document.createElement('img');
+                img.className = 'modal-hero-img';
+                img.src = project.heroImage;
+                img.alt = `${project.title} hero background`;
+                img.loading = 'eager';
+                heroEl.insertBefore(img, heroEl.firstChild);
+            }
+        }
+
         // Title
         const titleEl = document.getElementById('modalTitle');
         if (titleEl) titleEl.textContent = project.title;
@@ -350,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         related.map(r => `
                             <div class="modal-related-card" data-modal-id="${r.id}" tabindex="0" role="button">
                                 <div class="modal-related-thumb ${r.heroIcon ? '' : 'card-grad-1'}">
-                                    <i class="${r.heroIcon || 'fas fa-code'}" aria-hidden="true"></i>
+                                    ${r.image ? `<img src="${r.image}" alt="${r.title}" loading="lazy">` : `<i class="${r.heroIcon || 'fas fa-code'}" aria-hidden="true"></i>`}
                                 </div>
                                 <div class="modal-related-info">
                                     <div class="modal-related-title">${r.title}</div>
