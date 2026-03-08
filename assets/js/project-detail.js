@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // --- Populate Page Content ---
         document.title = `${project.title || 'Project'} | ${document.title.split('|')[1] || 'Project Gallery'}`; // Update browser title
+        updateOgMetaTags(project);
         projectTitleEl.textContent = project.title || 'Untitled Project';
         projectShortDescriptionEl.textContent = project.description || '';
 
@@ -192,6 +193,38 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
              console.warn("Unsupported video URL format:", videoUrl);
              if(videoSectionEl) videoSectionEl.style.display = 'none';
+        }
+    }
+
+    function updateOgMetaTags(project) {
+        const baseUrl = 'https://brettreifs.github.io';
+        const ogImage = project.ogImage ? baseUrl + project.ogImage : '';
+        const ogTitle = project.title || 'Project Details';
+        const ogDesc = project.description || '';
+
+        const updates = {
+            'og:title': ogTitle,
+            'og:description': ogDesc,
+            'og:image': ogImage,
+            'og:image:alt': ogTitle,
+            'og:url': window.location.href,
+            'og:type': 'article'
+        };
+
+        for (const [prop, content] of Object.entries(updates)) {
+            const el = document.querySelector(`meta[property="${prop}"]`);
+            if (el) el.setAttribute('content', content);
+        }
+
+        const twitterUpdates = {
+            'twitter:title': ogTitle,
+            'twitter:description': ogDesc,
+            'twitter:image': ogImage
+        };
+
+        for (const [name, content] of Object.entries(twitterUpdates)) {
+            const el = document.querySelector(`meta[name="${name}"]`);
+            if (el) el.setAttribute('content', content);
         }
     }
 

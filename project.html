@@ -1,29 +1,48 @@
---- 
-# project.html # This page will display details for a single project. 
-# It needs logic to find the project based on the URL parameter. 
-# Jekyll doesn't directly support URL parameters easily for static generation. 
-# # Option 1 (Recommended): Use a Jekyll Collection 
-# - Create a `_projects` folder. 
-# - Put each project in its own Markdown file (e.g., _projects/analytics-dashboard.md). 
-# - Use front matter in the Markdown file for metadata (title, category, image, etc.). 
-# - The content of the Markdown file becomes the full description. 
-# - Configure the collection in _config.yml to generate pages at /projects/project-name/. 
-# - Link cards on index.html directly to these generated pages. 
-# # Option 2 (JavaScript-based): Keep using URL parameter `?id=` 
-# - This page (`project.html`) is generated once by Jekyll. 
-# - It includes ALL project data (e.g., `site.data.projects | jsonify`) in a JavaScript variable. 
-# - JavaScript reads the `?id=` from the URL on page load. 
-# - JavaScript finds the matching project in the data and dynamically populates the HTML. 
-# - This is similar to the previous non-Jekyll approach but uses Jekyll to embed the data. 
-# # This example implements Option 2 (JavaScript-based) as it's closer to the previous structure. 
-# Option 1 (Collections) is generally preferred for cleaner URLs and better SEO in Jekyll. layout: default 
-# Use the default layout title: Project Details 
-# Title will be updated by JS custom_js: 
-# List any JS files needed specifically for this page - /assets/js/project-detail.js 
 ---
-Loading Project...
-Interactive Demo
-Loading Demo...
+layout: default
+title: Project Details
+og_title: "Brett Reif - Project Details"
+og_description: "Building agentic AI systems: agent frameworks, content pipelines, knowledge graphs, and developer tooling."
+og_image: "https://brettreifs.github.io/assets/images/og/portfolio-og-1200x630.jpg"
+og_image_alt: "Brett Reif Agent Builder Portfolio"
+custom_js:
+  - /assets/js/project-detail.js
+---
 
-About this Project
-Loading full project description...
+<!-- Embed project data as JSON for JS consumption -->
+<script id="project-data" type="application/json">
+{{ site.data.projects | jsonify }}
+</script>
+
+<div id="mainContent">
+    <h1 id="projectTitle">Loading Project...</h1>
+    <div id="projectTags"></div>
+    <p id="projectShortDescription"></p>
+    <div id="projectLinks"></div>
+
+    <section id="demoSection">
+        <h2>Interactive Demo</h2>
+        <div id="demoContainer">Loading Demo...</div>
+    </section>
+
+    <section id="videoSection" style="display:none;">
+        <h2>Video</h2>
+        <div id="videoContainer"></div>
+    </section>
+
+    <section>
+        <h2>About this Project</h2>
+        <div id="fullDescription">Loading full project description...</div>
+    </section>
+
+    <section id="githubSection" style="display:none;">
+        <h2>GitHub</h2>
+        <div id="repoInfo"></div>
+        <div id="codePreview"></div>
+    </section>
+</div>
+
+<div id="notFoundSection" style="display:none;">
+    <h2>Project Not Found</h2>
+    <p>The requested project could not be found. <a href="{{ '/' | relative_url }}">Return to portfolio</a>.</p>
+</div>

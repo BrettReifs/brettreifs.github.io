@@ -6,11 +6,6 @@
 - id: "excalidraw-mcp"
   title: "Excalidraw MCP"
   category: "epic"
-  heroIcon: "fas fa-pencil-ruler"
-  featured: true
-  carouselCategories:
-    - "Shipped"
-    - "MCP Tools"
   description: "MCP server that gives AI agents the power to create, edit, and stream hand-drawn diagrams via Excalidraw. The bridge between textual reasoning and visual communication."
   fullDescription: |
     <p>Agents can reason, but they can't draw — until now. Excalidraw MCP exposes the full Excalidraw canvas through the Model Context Protocol, enabling any LLM to sketch architecture diagrams, flowcharts, and wireframes on the fly.</p>
@@ -25,14 +20,8 @@
     - "Excalidraw"
     - "TypeScript"
     - "Diagrams"
-  descriptors:
-    - "Visual"
-    - "Innovative"
-    - "Real-Time"
-  media: []
-  image: "/assets/images/thumbs/excalidraw-mcp-thumb-342x192.webp"
-  heroImage: "/assets/images/hero/excalidraw-mcp-hero-1280x720.webp"
-  releaseDate: "2025-01-15"
+  image: ""
+  ogImage: "/assets/images/og/excalidraw-mcp-og-1200x630.jpg"
   githubUrl: "https://github.com/brettreifs/excalidraw-mcp"
   videoUrl: ""
   published: true
@@ -41,11 +30,6 @@
 - id: "mcp-app-media"
   title: "MCP App Media"
   category: "feature"
-  heroIcon: "fas fa-music"
-  featured: false
-  carouselCategories:
-    - "Shipped"
-    - "MCP Tools"
   description: "MCP server for Spotify DJ control and Suno AI music generation. Give your AI agent a soundtrack."
   fullDescription: |
     <p>Why should agents be limited to text? MCP App Media lets AI agents control Spotify playback and generate music via Suno AI, all through standardized MCP tool calls.</p>
@@ -60,14 +44,8 @@
     - "Spotify"
     - "Suno AI"
     - "TypeScript"
-  descriptors:
-    - "Creative"
-    - "Playful"
-    - "Multi-Modal"
-  media: []
-  image: "/assets/images/thumbs/mcp-app-media-thumb-342x192.webp"
-  heroImage: "/assets/images/hero/mcp-app-media-hero-1280x720.webp"
-  releaseDate: "2025-02-10"
+  image: ""
+  ogImage: "/assets/images/og/mcp-app-media-og-1200x630.jpg"
   githubUrl: "https://github.com/brettreifs/mcp-app-media"
   videoUrl: ""
   published: true
@@ -76,10 +54,6 @@
 - id: "model-modes"
   title: "Model Modes"
   category: "feature"
-  heroIcon: "fas fa-palette"
-  featured: false
-  carouselCategories:
-    - "Shipped"
   description: "VS Code extension providing model-aware visual skins for GPT, Claude, Gemini, and Llama — with a HUD showing active tools."
   fullDescription: |
     <p>When you switch between AI models, your IDE should reflect it. Model Modes transforms your VS Code environment with model-specific themes, color schemes, and a heads-up display showing which tools are active.</p>
@@ -94,14 +68,8 @@
     - "Extension"
     - "DX"
     - "TypeScript"
-  descriptors:
-    - "Polished"
-    - "Developer-First"
-    - "Elegant"
-  media: []
-  image: "/assets/images/thumbs/model-modes-thumb-342x192.webp"
-  heroImage: "/assets/images/hero/model-modes-hero-1280x720.webp"
-  releaseDate: "2024-11-20"
+  image: ""
+  ogImage: "/assets/images/og/model-modes-og-1200x630.jpg"
   githubUrl: "https://github.com/brettreifs/model-modes"
   videoUrl: ""
   published: true
@@ -112,10 +80,6 @@
 - id: "content-engine"
   title: "Content Engine"
   category: "feature"
-  heroIcon: "fas fa-video"
-  featured: false
-  carouselCategories:
-    - "AI Agents"
   description: "Automated pipeline that turns GitHub activity into polished video content and social posts via Remotion — the meta-project that promotes itself."
   fullDescription: |
     <p>Content Engine monitors your GitHub repos and automatically generates scripts, renders animated explainer videos with Remotion, and publishes to LinkedIn, Twitter, and YouTube.</p>
@@ -130,14 +94,8 @@
     - "Automation"
     - "AI"
     - "TypeScript"
-  descriptors:
-    - "Automated"
-    - "Viral"
-    - "Self-Promoting"
-  media: []
-  image: "/assets/images/thumbs/content-engine-thumb-342x192.webp"
-  heroImage: "/assets/images/hero/content-engine-hero-1280x720.webp"
-  releaseDate: "2025-04-01"
+  image: ""
+  ogImage: "/assets/images/og/content-engine-og-1200x630.jpg"
   githubUrl: "https://github.com/brettreifs/content-engine"
   videoUrl: ""
   published: true
@@ -146,11 +104,6 @@
 - id: "agent-sentinel"
   title: "Agent Sentinel"
   category: "epic"
-  heroIcon: "fas fa-shield-alt"
-  featured: false
-  carouselCategories:
-    - "MCP Tools"
-    - "AI Agents"
   description: "Governance framework that monitors AI agents for policy violations, prompt injection, secret leakage, and cost overruns. The security guard for your AI fleet."
   fullDescription: |
     <p>As agents gain more autonomy, someone needs to watch the watchers. Agent Sentinel provides enterprise-grade governance infrastructure with audit trails, policy enforcement, and kill switches.</p>
@@ -165,14 +118,8 @@
     - "Security"
     - "MCP"
     - "Python"
-  descriptors:
-    - "Enterprise"
-    - "Secure"
-    - "Vigilant"
-  media: []
-  image: "/assets/images/thumbs/agent-sentinel-thumb-342x192.webp"
-  heroImage: "/assets/images/hero/agent-sentinel-hero-1280x720.webp"
-  releaseDate: "2025-03-15"
+  image: ""
+  ogImage: "/assets/images/og/agent-sentinel-og-1200x630.jpg"
   githubUrl: "https://github.com/brettreifs/agent-sentinel"
   videoUrl: ""
   published: true
@@ -181,10 +128,6 @@
 - id: "agentic-philosophers"
   title: "Agentic Philosophers"
   category: "feature"
-  heroIcon: "fas fa-comments"
-  featured: false
-  carouselCategories:
-    - "AI Agents"
   description: "Multi-agent debate system with Researcher, Critic, Synthesizer, and Devil's Advocate agents collaborating in real-time via WebSocket."
   fullDescription: |
     <p>Four specialized AI agents debate any topic through structured rounds, with a live React UI streaming the conversation. The perfect testbed for multi-agent orchestration.</p>
@@ -199,14 +142,8 @@
     - "WebSocket"
     - "CrewAI"
     - "React"
-  descriptors:
-    - "Thought-Provoking"
-    - "Collaborative"
-    - "Live"
-  media: []
-  image: "/assets/images/thumbs/agentic-philosophers-thumb-342x192.webp"
-  heroImage: "/assets/images/hero/agentic-philosophers-hero-1280x720.webp"
-  releaseDate: "2025-03-01"
+  image: ""
+  ogImage: "/assets/images/og/agentic-philosophers-og-1200x630.jpg"
   githubUrl: "https://github.com/brettreifs/agentic-philosophers"
   videoUrl: ""
   published: true
@@ -215,11 +152,6 @@
 - id: "agent-lens"
   title: "Agent Lens"
   category: "feature"
-  heroIcon: "fas fa-chart-line"
-  featured: false
-  carouselCategories:
-    - "MCP Tools"
-    - "AI Agents"
   description: "Drop-in observability for MCP agents — tracks runs, tool calls, tokens, cost, and latency. Datadog for AI agents."
   fullDescription: |
     <p>You can't improve what you can't measure. Agent Lens is a TypeScript monorepo that instruments any MCP agent with zero-config observability.</p>
@@ -234,14 +166,8 @@
     - "MCP"
     - "Monorepo"
     - "TypeScript"
-  descriptors:
-    - "Insightful"
-    - "Zero-Config"
-    - "Data-Driven"
-  media: []
-  image: "/assets/images/thumbs/agent-lens-thumb-342x192.webp"
-  heroImage: "/assets/images/hero/agent-lens-hero-1280x720.webp"
-  releaseDate: "2025-04-10"
+  image: ""
+  ogImage: "/assets/images/og/agent-lens-og-1200x630.jpg"
   githubUrl: "https://github.com/brettreifs/agent-lens"
   videoUrl: ""
   published: true
@@ -250,10 +176,6 @@
 - id: "model-router"
   title: "Model Router"
   category: "feature"
-  heroIcon: "fas fa-random"
-  featured: false
-  carouselCategories:
-    - "AI Agents"
   description: "Dynamic LLM orchestrator that routes tasks to Claude, GPT, Gemini, or Ollama based on cost, quality, and latency strategies."
   fullDescription: |
     <p>No single model is best at everything. Model Router brings the load-balancer pattern to AI — selecting the optimal model for each request with automatic fallback chains.</p>
@@ -268,14 +190,8 @@
     - "Multi-Model"
     - "FastAPI"
     - "Python"
-  descriptors:
-    - "Smart"
-    - "Cost-Efficient"
-    - "Adaptive"
-  media: []
-  image: "/assets/images/thumbs/model-router-thumb-342x192.webp"
-  heroImage: "/assets/images/hero/model-router-hero-1280x720.webp"
-  releaseDate: "2025-05-01"
+  image: ""
+  ogImage: "/assets/images/og/model-router-og-1200x630.jpg"
   githubUrl: "https://github.com/brettreifs/model-router"
   videoUrl: ""
   published: true
@@ -284,10 +200,6 @@
 - id: "pm-agent"
   title: "PM Agent"
   category: "mini"
-  heroIcon: "fas fa-tasks"
-  featured: false
-  carouselCategories:
-    - "AI Agents"
   description: "AI product manager that analyzes GitHub issues, clusters themes, generates user stories, and writes release notes."
   fullDescription: |
     <p>Product managers spend too much time on document formatting. PM Agent automates the mechanical parts so humans can focus on strategy and empathy.</p>
@@ -302,14 +214,8 @@
     - "CLI"
     - "NLP"
     - "Python"
-  descriptors:
-    - "Strategic"
-    - "Automated"
-    - "Practical"
-  media: []
-  image: "/assets/images/thumbs/pm-agent-thumb-342x192.webp"
-  heroImage: "/assets/images/hero/pm-agent-hero-1280x720.webp"
-  releaseDate: "2025-04-20"
+  image: ""
+  ogImage: "/assets/images/og/pm-agent-og-1200x630.jpg"
   githubUrl: "https://github.com/brettreifs/pm-agent"
   videoUrl: ""
   published: true
@@ -318,10 +224,6 @@
 - id: "ideas-agent"
   title: "Ideas Agent"
   category: "mini"
-  heroIcon: "fas fa-lightbulb"
-  featured: false
-  carouselCategories:
-    - "AI Agents"
   description: "RAG-powered second brain that ingests your markdown notes, finds hidden connections, and answers questions conversationally."
   fullDescription: |
     <p>Great ideas rarely arrive fully formed. Ideas Agent acts as an always-on thought partner that surfaces connections between your notes you didn't know existed.</p>
@@ -336,14 +238,8 @@
     - "Knowledge"
     - "ChromaDB"
     - "Python"
-  descriptors:
-    - "Curious"
-    - "Connective"
-    - "Conversational"
-  media: []
-  image: "/assets/images/thumbs/ideas-agent-thumb-342x192.webp"
-  heroImage: "/assets/images/hero/ideas-agent-hero-1280x720.webp"
-  releaseDate: "2025-05-15"
+  image: ""
+  ogImage: "/assets/images/og/ideas-agent-og-1200x630.jpg"
   githubUrl: "https://github.com/brettreifs/ideas-agent"
   videoUrl: ""
   published: true
@@ -352,10 +248,6 @@
 - id: "agent-academy"
   title: "Agent Academy"
   category: "mini"
-  heroIcon: "fas fa-graduation-cap"
-  featured: false
-  carouselCategories:
-    - "AI Agents"
   description: "Agent registry and marketplace — discover, compose, and invoke AI agents via AGENTS.md. The npm for agents."
   fullDescription: |
     <p>The gap between building an agent and making it discoverable is enormous. Agent Academy provides the registry, search, and composition layer the ecosystem needs.</p>
@@ -370,14 +262,8 @@
     - "Next.js"
     - "Platform"
     - "FTS5"
-  descriptors:
-    - "Meta"
-    - "Composable"
-    - "Community"
-  media: []
-  image: "/assets/images/thumbs/agent-academy-thumb-342x192.webp"
-  heroImage: "/assets/images/hero/agent-academy-hero-1280x720.webp"
-  releaseDate: "2025-06-01"
+  image: ""
+  ogImage: "/assets/images/og/agent-academy-og-1200x630.jpg"
   githubUrl: "https://github.com/brettreifs/agent-academy"
   videoUrl: ""
   published: true
