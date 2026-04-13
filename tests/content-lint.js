@@ -68,11 +68,9 @@ for (const p of projects) {
         assert(p.image && p.image !== '', `${prefix} released project missing image`);
     }
     
-    // Image path format validation
+    // Image field is a slug (kebab-case ID used to build thumbnail paths)
     if (p.image) {
-        assert(p.image.startsWith('/assets/images/'), `${prefix} image path should start with /assets/images/`);
-        assert(p.image.endsWith('.webp') || p.image.endsWith('.jpg') || p.image.endsWith('.jpeg') || p.image.endsWith('.png'),
-            `${prefix} image should be webp/jpg/png`);
+        assert(/^[a-z0-9]+(-[a-z0-9]+)*$/.test(p.image), `${prefix} image should be a kebab-case slug (e.g. "excalidraw-mcp")`);
     }
     
     // heroImage path validation

@@ -7,114 +7,174 @@ og_image: "https://brettreifs.github.io/assets/images/og/portfolio-og-1200x630.j
 og_image_alt: "Brett Reif Agent Builder Portfolio"
 ---
 
-<!-- Filter Bar -->
-<div class="filter-bar" role="toolbar" aria-label="Filter projects">
-    <button class="filter-btn active" data-filter="all">All Projects</button>
-    <button class="filter-btn" data-filter="released"><i class="fas fa-check-circle"></i> Shipped</button>
-    <button class="filter-btn" data-filter="building"><i class="fas fa-hammer"></i> Building</button>
-</div>
-
-<!-- Unified Project Grid -->
-<div class="bento-grid" id="projectGrid">
-    {% assign published_projects = site.data.projects | where: "published", true %}
-    {% assign gradient_classes = "card-gradient-1|card-gradient-2|card-gradient-3|card-gradient-4" | split: "|" %}
-
-    {% if published_projects.size > 0 %}
-        {% for project in published_projects %}
-            {% assign loop_index = forloop.index0 | modulo: gradient_classes.size %}
-            {% assign gradient_class = gradient_classes[loop_index] %}
-
-            {% assign size_class = "mini" %}
-            {% if project.category == "epic" %}
-                {% assign size_class = "epic" %}
-            {% elsif project.category == "feature" %}
-                {% assign size_class = "feature" %}
-            {% endif %}
-
-            {% assign project_url = "/project.html?id=" | append: project.id | relative_url %}
-
-            <a href="{{ project_url }}" class="card {{ size_class }} {{ gradient_class }}" tabindex="0" aria-labelledby="card-title-{{ project.id }}" data-status="{{ project.status | default: 'building' }}">
-                <span id="card-title-{{ project.id }}" class="sr-only">{{ project.title }}</span>
-                {% if project.image != "" and project.image %}
-                <div class="card-thumbnail">
-                    <picture>
-                        <source type="image/webp"
-                                srcset="/assets/images/thumbs/{{ project.image }}-thumb-342x192.webp 342w,
-                                       /assets/images/thumbs/{{ project.image }}-thumb-684x384.webp 684w"
-                                sizes="(max-width: 600px) 100vw, 342px">
-                        <img src="/assets/images/thumbs/{{ project.image }}-thumb-342x192.webp"
-                             alt="{{ project.title }}"
-                             width="342" height="192"
-                             {% if forloop.first %}decoding="async"{% else %}loading="lazy" decoding="async"{% endif %}>
-                    </picture>
-                </div>
-                {% endif %}
-                <div class="card-content">
-                    <div class="card-header-row">
-                        {% if project.tags and project.tags.size > 0 %}
-                        <div class="card-tags">
-                            {% for tag in project.tags limit:3 %}
-                                <span class="card-tag">{{ tag }}</span>
-                            {% endfor %}
-                        </div>
-                        {% endif %}
-                        {% if project.status == "released" %}
-                            <span class="status-pill status-released"><i class="fas fa-check-circle"></i> Shipped</span>
-                        {% else %}
-                            <span class="status-pill status-building"><i class="fas fa-hammer"></i> Building</span>
-                        {% endif %}
-                    </div>
-                    <h2 class="card-title">{{ project.title }}</h2>
-                    {% if project.description %}
-                        <p class="card-description">{{ project.description | strip_html | normalize_whitespace | truncate: 160 }}</p>
-                    {% endif %}
-                </div>
-                <div class="card-footer">
-                    <span class="card-link" aria-hidden="true">
-                        View Project <i class="fas fa-arrow-right"></i>
-                    </span>
-                    <div class="card-meta">
-                        {% if project.githubUrl %}<span><i class="fab fa-github" aria-hidden="true"></i></span>{% endif %}
-                    </div>
-                </div>
-            </a>
-        {% endfor %}
-    {% else %}
-        <div class="empty-state">
-            <i class="fas fa-folder-open" aria-hidden="true"></i>
-            <h3>No Projects Yet</h3>
-            <p>Check back soon for exciting new projects!</p>
-        </div>
-    {% endif %}
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    // Filter functionality
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('.card');
-
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const filter = btn.dataset.filter;
-
-            cards.forEach(card => {
-                const status = card.dataset.status;
-                if (filter === 'all' || status === filter) {
-                    card.style.display = '';
-                    card.style.animation = 'fadeSlideIn 0.4s ease forwards';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
-
-    // Stagger card entrance animation
-    cards.forEach((card, i) => {
-        card.style.animationDelay = `${i * 0.06}s`;
-    });
-});
+<!-- Serialised project data for netflix.js -->
+<script id="project-data" type="application/json">
+{{ site.data.projects | where: "published", true | jsonify }}
 </script>
+
+<!-- Netflix-style carousel rows -->
+<div class="carousel-rows">
+
+    {% assign shipped_projects = site.data.projects | where: "published", true | where: "status", "released" %}
+    {% if shipped_projects.size > 0 %}
+    <section class="row-section" aria-labelledby="row-shipped">
+        <h2 id="row-shipped" class="row-heading">
+            <i class="fas fa-check-circle" aria-hidden="true" style="color:#34d399;font-size:1rem;"></i>
+            Shipped
+            <span class="row-count">{{ shipped_projects.size }}</span>
+        </h2>
+        <div class="carousel-wrapper">
+            <button class="carousel-arrow carousel-arrow--left" aria-label="Scroll left" style="display:none">&#8249;</button>
+            <div class="carousel-track" role="list">
+                {% for project in shipped_projects %}
+                {% assign grad_idx = forloop.index0 | modulo: 4 | plus: 1 %}
+                <div class="title-card grad-{{ grad_idx }}" data-project-id="{{ project.id }}" tabindex="0" role="listitem" aria-label="{{ project.title }}">
+                    <div class="card-thumb grad-{{ grad_idx }}">
+                        {% if project.image != "" and project.image %}
+                        <picture>
+                            <source type="image/webp"
+                                    srcset="/assets/images/thumbs/{{ project.image }}-thumb-342x192.webp 1x,
+                                            /assets/images/thumbs/{{ project.image }}-thumb-665x374.webp 2x">
+                            <img src="/assets/images/thumbs/{{ project.image }}-thumb-342x192.webp"
+                                 alt="{{ project.title }}"
+                                 width="342" height="192"
+                                 {% if forloop.first %}decoding="async"{% else %}loading="lazy" decoding="async"{% endif %}>
+                        </picture>
+                        {% endif %}
+                        <div class="thumb-overlay">
+                            <div class="thumb-status status-released"><i class="fas fa-check-circle" aria-hidden="true"></i> Shipped</div>
+                            <div class="thumb-title">{{ project.title }}</div>
+                        </div>
+                    </div>
+                    <div class="popup-card" aria-hidden="true">
+                        <div class="popup-thumb grad-{{ grad_idx }}">
+                            <i class="fas fa-code popup-icon" aria-hidden="true"></i>
+                        </div>
+                        <div class="popup-body">
+                            <div class="popup-actions">
+                                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="popup-btn popup-btn--primary" aria-label="Open {{ project.title }}"><i class="fas fa-play" aria-hidden="true"></i></a>
+                                <button class="popup-btn popup-btn--secondary" data-modal-id="{{ project.id }}" aria-label="More info about {{ project.title }}"><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+                            </div>
+                            <div class="popup-badges">
+                                <span class="popup-badge popup-badge--shipped"><i class="fas fa-check-circle" aria-hidden="true"></i> Shipped</span>
+                                {% for tag in project.tags limit:2 %}
+                                <span class="popup-badge">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                            <div class="popup-title">{{ project.title }}</div>
+                            <div class="popup-desc">{{ project.description | truncate: 110 }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-arrow carousel-arrow--right" aria-label="Scroll right">&#8250;</button>
+        </div>
+    </section>
+    {% endif %}
+
+    {% assign building_projects = site.data.projects | where: "published", true | where: "status", "building" %}
+    {% if building_projects.size > 0 %}
+    <section class="row-section" aria-labelledby="row-building">
+        <h2 id="row-building" class="row-heading">
+            <i class="fas fa-hammer" aria-hidden="true" style="color:#38bdf8;font-size:1rem;"></i>
+            Building Now
+            <span class="row-count">{{ building_projects.size }}</span>
+        </h2>
+        <div class="carousel-wrapper">
+            <button class="carousel-arrow carousel-arrow--left" aria-label="Scroll left" style="display:none">&#8249;</button>
+            <div class="carousel-track" role="list">
+                {% for project in building_projects %}
+                {% assign grad_idx = forloop.index0 | modulo: 4 | plus: 1 %}
+                <div class="title-card grad-{{ grad_idx }}" data-project-id="{{ project.id }}" tabindex="0" role="listitem" aria-label="{{ project.title }}">
+                    <div class="card-thumb grad-{{ grad_idx }}">
+                        {% if project.image != "" and project.image %}
+                        <picture>
+                            <source type="image/webp"
+                                    srcset="/assets/images/thumbs/{{ project.image }}-thumb-342x192.webp 1x,
+                                            /assets/images/thumbs/{{ project.image }}-thumb-665x374.webp 2x">
+                            <img src="/assets/images/thumbs/{{ project.image }}-thumb-342x192.webp"
+                                 alt="{{ project.title }}"
+                                 width="342" height="192"
+                                 loading="lazy" decoding="async">
+                        </picture>
+                        {% endif %}
+                        <div class="thumb-overlay">
+                            <div class="thumb-status status-building"><i class="fas fa-hammer" aria-hidden="true"></i> Building</div>
+                            <div class="thumb-title">{{ project.title }}</div>
+                        </div>
+                    </div>
+                    <div class="popup-card" aria-hidden="true">
+                        <div class="popup-thumb grad-{{ grad_idx }}">
+                            <i class="fas fa-code popup-icon" aria-hidden="true"></i>
+                        </div>
+                        <div class="popup-body">
+                            <div class="popup-actions">
+                                <a href="{{ '/project.html?id=' | append: project.id | relative_url }}" class="popup-btn popup-btn--primary" aria-label="Open {{ project.title }}"><i class="fas fa-play" aria-hidden="true"></i></a>
+                                <button class="popup-btn popup-btn--secondary" data-modal-id="{{ project.id }}" aria-label="More info about {{ project.title }}"><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+                            </div>
+                            <div class="popup-badges">
+                                <span class="popup-badge popup-badge--building"><i class="fas fa-hammer" aria-hidden="true"></i> Building</span>
+                                {% for tag in project.tags limit:2 %}
+                                <span class="popup-badge">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                            <div class="popup-title">{{ project.title }}</div>
+                            <div class="popup-desc">{{ project.description | truncate: 110 }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-arrow carousel-arrow--right" aria-label="Scroll right">&#8250;</button>
+        </div>
+    </section>
+    {% endif %}
+
+</div>
+
+<!-- Detail Modal -->
+<div id="detailModal" class="detail-modal" role="dialog" aria-modal="true" aria-label="Project details" aria-hidden="true">
+    <div class="modal-container">
+        <button class="modal-close" aria-label="Close details"><i class="fas fa-times" aria-hidden="true"></i></button>
+
+        <div id="modalHero" class="modal-hero">
+            <div id="modalHeroGradient" class="modal-hero-gradient"></div>
+            <i id="modalHeroIcon" class="modal-hero-icon" aria-hidden="true"></i>
+            <div class="modal-hero-content">
+                <h2 id="modalTitle" class="modal-title"></h2>
+                <div id="modalHeroButtons" class="modal-hero-buttons"></div>
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <div class="modal-main">
+                <div id="modalMetaRow" class="modal-meta-row"></div>
+                <p id="modalDescription" class="modal-description"></p>
+                <div id="modalFullDescription" class="modal-full-description content-text"></div>
+                <div id="modalMediaGrid" class="modal-media-grid"></div>
+                <div id="modalMoreLikeThis"></div>
+            </div>
+
+            <aside class="modal-sidebar">
+                <div class="modal-sidebar-section">
+                    <span class="modal-sidebar-label">Tech Stack</span>
+                    <span id="modalTechStack" class="modal-sidebar-value"></span>
+                </div>
+                <div class="modal-sidebar-section">
+                    <span class="modal-sidebar-label">Category</span>
+                    <span id="modalCategory" class="modal-sidebar-value"></span>
+                </div>
+                <div class="modal-sidebar-section">
+                    <span class="modal-sidebar-label">Descriptors</span>
+                    <span id="modalDescriptors" class="modal-sidebar-value"></span>
+                </div>
+                <div id="modalLinksSection" class="modal-sidebar-section">
+                    <span class="modal-sidebar-label">Links</span>
+                    <div id="modalLinks" class="modal-sidebar-links"></div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+

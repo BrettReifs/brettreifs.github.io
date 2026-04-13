@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         related.map(r => `
                             <div class="modal-related-card" data-modal-id="${r.id}" tabindex="0" role="button">
                                 <div class="modal-related-thumb ${r.heroIcon ? '' : 'card-grad-1'}">
-                                    ${r.image ? `<img src="${r.image}" alt="${r.title}" loading="lazy">` : `<i class="${r.heroIcon || 'fas fa-code'}" aria-hidden="true"></i>`}
+                                    ${r.image ? `<img src="/assets/images/thumbs/${r.image}-thumb-342x192.webp" alt="${r.title}" loading="lazy">` : `<i class="${r.heroIcon || 'fas fa-code'}" aria-hidden="true"></i>`}
                                 </div>
                                 <div class="modal-related-info">
                                     <div class="modal-related-title">${r.title}</div>
