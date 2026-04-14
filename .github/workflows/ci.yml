@@ -36,8 +36,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Build Jekyll site
+        run: bundle exec jekyll build
+
       - name: Link Checker
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --verbose --no-progress index.html project.html _data/projects.yml
+          args: --verbose --no-progress _site/index.html _site/project.html
           fail: true

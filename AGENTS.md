@@ -1,7 +1,7 @@
 # Agent: brettreifs.github.io
 
 ## Description
-Personal project portfolio site built with Jekyll and GitHub Pages. Features a bento grid layout with dark cinematic aesthetic, project cards with gradient effects, and an admin dashboard for content management.
+Personal project portfolio site built with Jekyll and GitHub Pages. Features a Netflix-style carousel layout with hero billboard, hover popup cards, and detail modal.
 
 ## Tech Stack
 - HTML5, CSS3, JavaScript
