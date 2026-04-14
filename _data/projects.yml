@@ -310,7 +310,7 @@
   image: "/assets/images/thumbs/pm-agent-thumb-342x192.webp"
   heroImage: "/assets/images/hero/pm-agent-hero-1280x720.webp"
   releaseDate: "2025-04-20"
-  githubUrl: "https://github.com/brettreifs/pm-agent"
+  githubUrl: ""
   videoUrl: ""
   published: true
   status: "building"
