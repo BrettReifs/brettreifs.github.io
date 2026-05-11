@@ -39,5 +39,5 @@ jobs:
       - name: Link Checker
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --verbose --no-progress index.html project.html _data/projects.yml
+          args: --verbose --no-progress --exclude '%7B%7B' --exclude '\{\{' index.html project.html _data/projects.yml
           fail: true

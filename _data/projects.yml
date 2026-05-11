@@ -102,7 +102,7 @@
   image: "/assets/images/thumbs/model-modes-thumb-342x192.webp"
   heroImage: "/assets/images/hero/model-modes-hero-1280x720.webp"
   releaseDate: "2024-11-20"
-  githubUrl: "https://github.com/brettreifs/model-modes"
+  githubUrl: ""
   videoUrl: ""
   published: true
   status: "released"
@@ -138,7 +138,7 @@
   image: "/assets/images/thumbs/content-engine-thumb-342x192.webp"
   heroImage: "/assets/images/hero/content-engine-hero-1280x720.webp"
   releaseDate: "2025-04-01"
-  githubUrl: "https://github.com/brettreifs/content-engine"
+  githubUrl: ""
   videoUrl: ""
   published: true
   status: "building"
@@ -173,7 +173,7 @@
   image: "/assets/images/thumbs/agent-sentinel-thumb-342x192.webp"
   heroImage: "/assets/images/hero/agent-sentinel-hero-1280x720.webp"
   releaseDate: "2025-03-15"
-  githubUrl: "https://github.com/brettreifs/agent-sentinel"
+  githubUrl: ""
   videoUrl: ""
   published: true
   status: "building"
@@ -207,7 +207,7 @@
   image: "/assets/images/thumbs/agentic-philosophers-thumb-342x192.webp"
   heroImage: "/assets/images/hero/agentic-philosophers-hero-1280x720.webp"
   releaseDate: "2025-03-01"
-  githubUrl: "https://github.com/brettreifs/agentic-philosophers"
+  githubUrl: ""
   videoUrl: ""
   published: true
   status: "building"
@@ -242,7 +242,7 @@
   image: "/assets/images/thumbs/agent-lens-thumb-342x192.webp"
   heroImage: "/assets/images/hero/agent-lens-hero-1280x720.webp"
   releaseDate: "2025-04-10"
-  githubUrl: "https://github.com/brettreifs/agent-lens"
+  githubUrl: ""
   videoUrl: ""
   published: true
   status: "building"
@@ -276,7 +276,7 @@
   image: "/assets/images/thumbs/model-router-thumb-342x192.webp"
   heroImage: "/assets/images/hero/model-router-hero-1280x720.webp"
   releaseDate: "2025-05-01"
-  githubUrl: "https://github.com/brettreifs/model-router"
+  githubUrl: ""
   videoUrl: ""
   published: true
   status: "building"
@@ -310,7 +310,7 @@
   image: "/assets/images/thumbs/pm-agent-thumb-342x192.webp"
   heroImage: "/assets/images/hero/pm-agent-hero-1280x720.webp"
   releaseDate: "2025-04-20"
-  githubUrl: "https://github.com/brettreifs/pm-agent"
+  githubUrl: ""
   videoUrl: ""
   published: true
   status: "building"
@@ -344,7 +344,7 @@
   image: "/assets/images/thumbs/ideas-agent-thumb-342x192.webp"
   heroImage: "/assets/images/hero/ideas-agent-hero-1280x720.webp"
   releaseDate: "2025-05-15"
-  githubUrl: "https://github.com/brettreifs/ideas-agent"
+  githubUrl: ""
   videoUrl: ""
   published: true
   status: "building"
@@ -378,8 +378,7 @@
   image: "/assets/images/thumbs/agent-academy-thumb-342x192.webp"
   heroImage: "/assets/images/hero/agent-academy-hero-1280x720.webp"
   releaseDate: "2025-06-01"
-  githubUrl: "https://github.com/brettreifs/agent-academy"
+  githubUrl: ""
   videoUrl: ""
   published: true
   status: "building"
-

@@ -21,6 +21,9 @@ const TECH_LINKS = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    const rawBasePath = document.body?.dataset.baseurl || '/';
+    const basePath = rawBasePath.endsWith('/') ? rawBasePath.slice(0, -1) : rawBasePath;
+    const projectPageUrl = (projectId) => `${basePath}/project.html?id=${encodeURIComponent(projectId)}`;
 
     // --- Mobile nav toggle ---
     const navToggle = document.querySelector('.nav-toggle');
@@ -255,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hero buttons
         const btnsEl = document.getElementById('modalHeroButtons');
         if (btnsEl) {
-            let html = `<a href="/project.html?id=${project.id}" class="modal-hero-btn modal-hero-btn--primary"><i class="fas fa-play"></i> Explore</a>`;
+            let html = `<a href="${projectPageUrl(project.id)}" class="modal-hero-btn modal-hero-btn--primary"><i class="fas fa-play"></i> Explore</a>`;
             if (project.githubUrl) {
                 html += `<a href="${project.githubUrl}" class="modal-hero-btn modal-hero-btn--secondary" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>`;
             }
@@ -295,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Links
         const linksEl = document.getElementById('modalLinks');
         if (linksEl) {
-            let html = `<a href="/project.html?id=${project.id}" class="modal-sidebar-link"><i class="fas fa-external-link-alt"></i> Project Page</a>`;
+            let html = `<a href="${projectPageUrl(project.id)}" class="modal-sidebar-link"><i class="fas fa-external-link-alt"></i> Project Page</a>`;
             if (project.githubUrl) {
                 html += `<a href="${project.githubUrl}" class="modal-sidebar-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub Repo</a>`;
             }
