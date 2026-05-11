@@ -4,6 +4,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const rawBasePath = document.body?.dataset.baseurl || '/';
     const basePath = rawBasePath.endsWith('/') ? rawBasePath.slice(0, -1) : rawBasePath;
     const withBasePath = (path) => `${basePath}${path.startsWith('/') ? path : `/${path}`}`;
+    const resolveProjectUrl = (urlValue) => {
+        if (typeof urlValue !== 'string') return null;
+        const trimmed = urlValue.trim();
+        if (!trimmed) return null;
+
+        if (/^https?:\/\//i.test(trimmed)) {
+            try {
+                const parsed = new URL(trimmed);
+                return (parsed.protocol === 'http:' || parsed.protocol === 'https:') ? parsed.toString() : null;
+            } catch {
+                return null;
+            }
+        }
+
+        if (trimmed.startsWith('//') || /^[a-z][a-z0-9+.-]*:/i.test(trimmed)) return null;
+        return withBasePath(trimmed);
+    };
     // --- Get Embedded Project Data ---
     const projectDataElement = document.getElementById('project-data');
     let projects = [];
@@ -93,10 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Add Live Demo link (adjust URL logic as needed)
         // Example: Assume relative path based on project ID or a dedicated 'demoUrl' field
-        if (project.demoUrl) {
-            const liveDemoUrl = /^https?:\/\//i.test(project.demoUrl)
-                ? project.demoUrl
-                : withBasePath(project.demoUrl);
+        const liveDemoUrl = resolveProjectUrl(project.demoUrl);
+        if (liveDemoUrl) {
             const liveLink = document.createElement('a');
             liveLink.href = liveDemoUrl;
             liveLink.className = 'project-link live-link'; // Use class from style.css
@@ -136,14 +151,11 @@ document.addEventListener('DOMContentLoaded', () => {
      }
 
     function loadInteractiveDemo(project) {
-        if (!project.demoUrl) {
+        const demoUrl = resolveProjectUrl(project.demoUrl);
+        if (!demoUrl) {
             demoSectionEl.style.display = 'none';
             return;
         }
-
-        const demoUrl = /^https?:\/\//i.test(project.demoUrl)
-            ? project.demoUrl
-            : withBasePath(project.demoUrl);
 
         demoContainerEl.innerHTML = `
             <iframe class="demo-iframe" src="${demoUrl}" title="Interactive Demo for ${project.title}" loading="lazy">
