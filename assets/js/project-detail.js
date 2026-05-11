@@ -90,20 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Add Live Demo link (adjust URL logic as needed)
         // Example: Assume relative path based on project ID or a dedicated 'demoUrl' field
-        const liveDemoUrl = project.demoUrl || `/projects/${project.id}/index.html`; // Adjust this path! Needs setup.
-        const liveLink = document.createElement('a');
-        // Check if demo URL exists before adding link
-        // For now, assume it might exist based on convention
-        liveLink.href = liveDemoUrl;
-        liveLink.className = 'project-link live-link'; // Use class from style.css
-        // liveLink.target = '_blank'; // Optional: open demo in new tab
-        // liveLink.rel = 'noopener noreferrer';
-        liveLink.innerHTML = `<i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo`;
-        projectLinksEl.appendChild(liveLink);
-
-
         // Full Description (assuming safe HTML from data file)
-        fullDescriptionEl.innerHTML = project.fullDescription || '<p>No detailed description available.</p>';
+        fullDescriptionEl.textContent = project.fullDescription || 'No detailed description available.';
 
         // Demo
         loadInteractiveDemo(project);
@@ -132,28 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
          document.title = "Project Not Found | Project Gallery";
      }
 
-    function loadInteractiveDemo(project) {
-        // Adjust the demo URL logic here based on your project structure
-        // Example: Assume demos are in /assets/demos/{project-id}/index.html
-        const demoUrl = `/assets/demos/${project.id}/index.html`; // Needs actual setup!
-
-        demoContainerEl.innerHTML = `
-            <iframe class="demo-iframe" src="${demoUrl}" title="Interactive Demo for ${project.title}" loading="lazy">
-                Your browser does not support iframes, or the demo could not be loaded.
-                <a href="${demoUrl}" target="_blank" rel="noopener noreferrer">Open demo in new tab</a>.
-            </iframe>
-        `;
-        const iframe = demoContainerEl.querySelector('iframe');
-         if(iframe) {
-             iframe.onerror = () => {
-                 demoContainerEl.innerHTML = `
-                     <div class="demo-placeholder">
-                         <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
-                         <p>Could not load the interactive demo.</p>
-                         <a href="${demoUrl}" target="_blank" rel="noopener noreferrer" class="project-link live-link" style="display: inline-flex; margin-top: 0.5rem;">Try Opening Demo</a>
-                     </div>`;
-             };
-         }
+    function loadInteractiveDemo() {
+        demoSectionEl.style.display = 'none';
     }
 
     function loadVideo(videoUrl) {
