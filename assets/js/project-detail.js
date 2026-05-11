@@ -1,26 +1,6 @@
 // assets/js/project-detail.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    const rawBasePath = document.body?.dataset.baseurl || '/';
-    const basePath = rawBasePath.endsWith('/') ? rawBasePath.slice(0, -1) : rawBasePath;
-    const withBasePath = (path) => `${basePath}${path.startsWith('/') ? path : `/${path}`}`;
-    const resolveProjectUrl = (urlValue) => {
-        if (typeof urlValue !== 'string') return null;
-        const trimmed = urlValue.trim();
-        if (!trimmed) return null;
-
-        if (/^https?:\/\//i.test(trimmed)) {
-            try {
-                const parsed = new URL(trimmed);
-                return (parsed.protocol === 'http:' || parsed.protocol === 'https:') ? parsed.toString() : null;
-            } catch {
-                return null;
-            }
-        }
-
-        if (trimmed.startsWith('//') || /^[a-z][a-z0-9+.-]*:/i.test(trimmed)) return null;
-        return withBasePath(trimmed);
-    };
     // --- Get Embedded Project Data ---
     const projectDataElement = document.getElementById('project-data');
     let projects = [];
@@ -110,16 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Add Live Demo link (adjust URL logic as needed)
         // Example: Assume relative path based on project ID or a dedicated 'demoUrl' field
-        const liveDemoUrl = resolveProjectUrl(project.demoUrl);
-        if (liveDemoUrl) {
-            const liveLink = document.createElement('a');
-            liveLink.href = liveDemoUrl;
-            liveLink.className = 'project-link live-link'; // Use class from style.css
-            liveLink.innerHTML = `<i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo`;
-            projectLinksEl.appendChild(liveLink);
-        }
-
-
         // Full Description (assuming safe HTML from data file)
         fullDescriptionEl.textContent = project.fullDescription || 'No detailed description available.';
 
@@ -150,45 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
          document.title = "Project Not Found | Project Gallery";
      }
 
-    function loadInteractiveDemo(project) {
-        const demoUrl = resolveProjectUrl(project.demoUrl);
-        if (!demoUrl) {
-            demoSectionEl.style.display = 'none';
-            return;
-        }
-
-        demoContainerEl.textContent = '';
-        const iframe = document.createElement('iframe');
-        iframe.className = 'demo-iframe';
-        iframe.src = demoUrl;
-        iframe.title = `Interactive Demo for ${project.title || 'Project'}`;
-        iframe.loading = 'lazy';
-        demoContainerEl.appendChild(iframe);
-
-        iframe.onerror = () => {
-            demoContainerEl.textContent = '';
-            const placeholder = document.createElement('div');
-            placeholder.className = 'demo-placeholder';
-
-            const icon = document.createElement('i');
-            icon.className = 'fas fa-exclamation-triangle';
-            icon.setAttribute('aria-hidden', 'true');
-
-            const message = document.createElement('p');
-            message.textContent = 'Could not load the interactive demo.';
-
-            const retryLink = document.createElement('a');
-            retryLink.href = demoUrl;
-            retryLink.target = '_blank';
-            retryLink.rel = 'noopener noreferrer';
-            retryLink.className = 'project-link live-link';
-            retryLink.style.display = 'inline-flex';
-            retryLink.style.marginTop = '0.5rem';
-            retryLink.textContent = 'Try Opening Demo';
-
-            placeholder.append(icon, message, retryLink);
-            demoContainerEl.appendChild(placeholder);
-        };
+    function loadInteractiveDemo() {
+        demoSectionEl.style.display = 'none';
     }
 
     function loadVideo(videoUrl) {
