@@ -4,45 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const rawBasePath = document.body?.dataset.baseurl || '/';
     const basePath = rawBasePath.endsWith('/') ? rawBasePath.slice(0, -1) : rawBasePath;
     const withBasePath = (path) => `${basePath}${path.startsWith('/') ? path : `/${path}`}`;
-    const sanitizeRichHtml = (html) => {
-        if (typeof html !== 'string' || !html.trim()) return '';
-
-        const allowedTags = new Set(['P', 'UL', 'OL', 'LI', 'STRONG', 'EM', 'B', 'I', 'CODE', 'PRE', 'A', 'BR']);
-        const allowedAttrs = new Set(['href', 'target', 'rel']);
-        const template = document.createElement('template');
-        template.innerHTML = html;
-
-        const nodes = Array.from(template.content.querySelectorAll('*'));
-        for (const node of nodes) {
-            if (!allowedTags.has(node.tagName)) {
-                node.replaceWith(document.createTextNode(node.textContent || ''));
-                continue;
-            }
-
-            for (const attr of Array.from(node.attributes)) {
-                const attrName = attr.name.toLowerCase();
-                const attrValue = attr.value.trim();
-                if (!allowedAttrs.has(attrName)) {
-                    node.removeAttribute(attr.name);
-                    continue;
-                }
-                if (attrName === 'href') {
-                    const safeHref = /^(https?:|mailto:|\/|#)/i.test(attrValue);
-                    if (!safeHref) {
-                        node.removeAttribute(attr.name);
-                    }
-                }
-                if (attrName === 'target' && attrValue !== '_blank') {
-                    node.removeAttribute(attr.name);
-                }
-                if (attrName === 'rel' && !/noopener|noreferrer/i.test(attrValue)) {
-                    node.setAttribute('rel', 'noopener noreferrer');
-                }
-            }
-        }
-
-        return template.innerHTML;
-    };
     const resolveProjectUrl = (urlValue) => {
         if (typeof urlValue !== 'string') return null;
         const trimmed = urlValue.trim();
@@ -160,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         // Full Description (assuming safe HTML from data file)
-        fullDescriptionEl.innerHTML = sanitizeRichHtml(project.fullDescription) || '<p>No detailed description available.</p>';
+        fullDescriptionEl.textContent = project.fullDescription || 'No detailed description available.';
 
         // Demo
         loadInteractiveDemo(project);
@@ -196,23 +157,38 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        demoContainerEl.innerHTML = `
-            <iframe class="demo-iframe" src="${demoUrl}" title="Interactive Demo for ${project.title}" loading="lazy">
-                Your browser does not support iframes, or the demo could not be loaded.
-                <a href="${demoUrl}" target="_blank" rel="noopener noreferrer">Open demo in new tab</a>.
-            </iframe>
-        `;
-        const iframe = demoContainerEl.querySelector('iframe');
-         if(iframe) {
-             iframe.onerror = () => {
-                 demoContainerEl.innerHTML = `
-                     <div class="demo-placeholder">
-                         <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
-                         <p>Could not load the interactive demo.</p>
-                         <a href="${demoUrl}" target="_blank" rel="noopener noreferrer" class="project-link live-link" style="display: inline-flex; margin-top: 0.5rem;">Try Opening Demo</a>
-                     </div>`;
-             };
-         }
+        demoContainerEl.textContent = '';
+        const iframe = document.createElement('iframe');
+        iframe.className = 'demo-iframe';
+        iframe.src = demoUrl;
+        iframe.title = `Interactive Demo for ${project.title || 'Project'}`;
+        iframe.loading = 'lazy';
+        demoContainerEl.appendChild(iframe);
+
+        iframe.onerror = () => {
+            demoContainerEl.textContent = '';
+            const placeholder = document.createElement('div');
+            placeholder.className = 'demo-placeholder';
+
+            const icon = document.createElement('i');
+            icon.className = 'fas fa-exclamation-triangle';
+            icon.setAttribute('aria-hidden', 'true');
+
+            const message = document.createElement('p');
+            message.textContent = 'Could not load the interactive demo.';
+
+            const retryLink = document.createElement('a');
+            retryLink.href = demoUrl;
+            retryLink.target = '_blank';
+            retryLink.rel = 'noopener noreferrer';
+            retryLink.className = 'project-link live-link';
+            retryLink.style.display = 'inline-flex';
+            retryLink.style.marginTop = '0.5rem';
+            retryLink.textContent = 'Try Opening Demo';
+
+            placeholder.append(icon, message, retryLink);
+            demoContainerEl.appendChild(placeholder);
+        };
     }
 
     function loadVideo(videoUrl) {
