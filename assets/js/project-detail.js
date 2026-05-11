@@ -4,6 +4,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const rawBasePath = document.body?.dataset.baseurl || '/';
     const basePath = rawBasePath.endsWith('/') ? rawBasePath.slice(0, -1) : rawBasePath;
     const withBasePath = (path) => `${basePath}${path.startsWith('/') ? path : `/${path}`}`;
+    const sanitizeRichHtml = (html) => {
+        if (typeof html !== 'string' || !html.trim()) return '';
+
+        const allowedTags = new Set(['P', 'UL', 'OL', 'LI', 'STRONG', 'EM', 'B', 'I', 'CODE', 'PRE', 'A', 'BR']);
+        const allowedAttrs = new Set(['href', 'target', 'rel']);
+        const template = document.createElement('template');
+        template.innerHTML = html;
+
+        const nodes = Array.from(template.content.querySelectorAll('*'));
+        for (const node of nodes) {
+            if (!allowedTags.has(node.tagName)) {
+                node.replaceWith(document.createTextNode(node.textContent || ''));
+                continue;
+            }
+
+            for (const attr of Array.from(node.attributes)) {
+                const attrName = attr.name.toLowerCase();
+                const attrValue = attr.value.trim();
+                if (!allowedAttrs.has(attrName)) {
+                    node.removeAttribute(attr.name);
+                    continue;
+                }
+                if (attrName === 'href') {
+                    const safeHref = /^(https?:|mailto:|\/|#)/i.test(attrValue);
+                    if (!safeHref) {
+                        node.removeAttribute(attr.name);
+                    }
+                }
+                if (attrName === 'target' && attrValue !== '_blank') {
+                    node.removeAttribute(attr.name);
+                }
+                if (attrName === 'rel' && !/noopener|noreferrer/i.test(attrValue)) {
+                    node.setAttribute('rel', 'noopener noreferrer');
+                }
+            }
+        }
+
+        return template.innerHTML;
+    };
     const resolveProjectUrl = (urlValue) => {
         if (typeof urlValue !== 'string') return null;
         const trimmed = urlValue.trim();
@@ -121,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         // Full Description (assuming safe HTML from data file)
-        fullDescriptionEl.innerHTML = project.fullDescription || '<p>No detailed description available.</p>';
+        fullDescriptionEl.innerHTML = sanitizeRichHtml(project.fullDescription) || '<p>No detailed description available.</p>';
 
         // Demo
         loadInteractiveDemo(project);
