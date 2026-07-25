@@ -198,16 +198,18 @@ architecture means components address slots such as `--color-accent` and
 `--color-surface`, while this project picks primitive values for those slots.
 
 **Project-specific aesthetic notes:** A cinematic editorial portfolio built
-from structural folded planes, clipped media, diagonal transitions, and
-paper-edge rules. Warm white is the canonical canvas, near-black is the ink,
-and electric cobalt marks decisions and active structure.
+from recognizable paper-system diagrams, clipped media, diagonal transitions,
+and continuous narrative lines. White is the canonical canvas, near-black is
+the ink, and cobalt, coral, citron, and sky identify stages in the system.
 
 **Departures from the constitution:** The portfolio opts into an editorial
 display serif for narrative headings and expressive motion for one focal hero
-sequence plus restrained scroll choreography. Warm white replaces the neutral
-light surface to create a paper field. Chrome stays in Inter, technical labels
-stay in JetBrains Mono, and reduced motion collapses all movement to meaningful
-static compositions. Glass, focused density, and dark-first mode remain off.
+sequence plus restrained scroll choreography. A white canvas and expanded
+signal palette replace the original warm-white and cobalt-only treatment so
+folded stages remain legible rather than abstract. Chrome stays in Inter,
+technical labels stay in JetBrains Mono, and reduced motion collapses all
+movement to meaningful static compositions. Glass, focused density, and
+dark-first mode remain off.
 
 ## Color
 

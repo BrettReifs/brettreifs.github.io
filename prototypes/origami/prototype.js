@@ -1,15 +1,15 @@
 const variants = {
   1: {
-    name: "01 Ridge",
-    axis: "Axial fold: one cobalt spine turns ambiguity into evidence."
+    name: "Cascade",
+    axis: "Cascade: colored pages reveal an agent-system flow step by step."
   },
   2: {
-    name: "02 Aperture",
-    axis: "Nested aperture: folds progressively frame the core claim."
+    name: "Workbench",
+    axis: "Workbench: a readable paper pipeline exposes each handoff."
   },
   3: {
-    name: "03 Pleat",
-    axis: "Continuous pleat: a vertical fold carries the narrative between scenes."
+    name: "Convergence",
+    axis: "Convergence: independent inputs fold toward one decision and its evidence."
   }
 };
 

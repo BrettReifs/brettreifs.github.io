@@ -20,15 +20,15 @@
 
   <aside class="story-rail" aria-label="Future story rail preview">
     <span class="rail-line" aria-hidden="true"></span>
-    <a class="rail-step is-current" href="#hero"><span>01</span> Thesis</a>
-    <a class="rail-step" href="#proof"><span>02</span> Work</a>
-    <a class="rail-step" href="#system"><span>03</span> System</a>
+    <a class="rail-step is-current" href="#hero"><span aria-hidden="true"></span> Thesis</a>
+    <a class="rail-step" href="#proof"><span aria-hidden="true"></span> Work</a>
+    <a class="rail-step" href="#system"><span aria-hidden="true"></span> System</a>
   </aside>
 
   <main id="main">
     <p class="axis-caption">
       <span>Comparison axis</span>
-      <strong id="variant-axis">Axial fold: one cobalt spine turns ambiguity into evidence.</strong>
+      <strong id="variant-axis">Cascade: colored pages reveal an agent-system flow step by step.</strong>
     </p>
     <section class="scene hero" id="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
@@ -39,20 +39,16 @@
       </div>
 
       <div class="fold-stage" aria-hidden="true">
-        <span class="plane plane-a"></span>
-        <span class="plane plane-b"></span>
-        <span class="plane plane-c"></span>
-        <span class="plane plane-d"></span>
-        <span class="plane plane-e"></span>
+        <span class="plane plane-a"><b>Question</b><small>What is worth solving?</small></span>
+        <span class="plane plane-b"><b>Signals</b><small>What do we know?</small></span>
+        <span class="plane plane-c"><b>Model</b><small>What could work?</small></span>
+        <span class="plane plane-d"><b>Decision</b><small>What will we test?</small></span>
+        <span class="plane plane-e"><b>Evidence</b><small>What did we learn?</small></span>
         <span class="fold-edge fold-edge-a"></span>
         <span class="fold-edge fold-edge-b"></span>
         <span class="cobalt-spine"></span>
-        <span class="system-node node-input">Ambiguity</span>
-        <span class="system-node node-decision">Decision</span>
-        <span class="system-node node-proof">Evidence</span>
       </div>
-
-      <p class="scene-index" aria-hidden="true">01 / 03</p>
+      <span class="narrative-thread" aria-hidden="true"></span>
     </section>
 
     <section class="scene proof" id="proof" aria-labelledby="proof-title">
@@ -74,7 +70,7 @@
       </figure>
 
       <div class="proof-plane" aria-hidden="true"></div>
-      <p class="scene-index" aria-hidden="true">02 / 03</p>
+      <span class="narrative-thread" aria-hidden="true"></span>
     </section>
 
     <section class="scene system" id="system" aria-labelledby="system-title">
@@ -96,19 +92,19 @@
           <dd>Cobalt edge. Marks the current decision.</dd>
         </div>
       </dl>
-      <p class="scene-index" aria-hidden="true">03 / 03</p>
+      <span class="narrative-thread" aria-hidden="true"></span>
     </section>
   </main>
 
   <nav class="prototype-switcher" aria-label="Prototype directions">
     <div class="switcher-heading">
       <span>Direction</span>
-      <strong id="variant-name" aria-live="polite">01 Ridge</strong>
+      <strong id="variant-name" aria-live="polite">Cascade</strong>
     </div>
     <div class="variant-buttons">
-      <a href="?variant=1" data-variant-button="1" aria-current="page">01</a>
-      <a href="?variant=2" data-variant-button="2">02</a>
-      <a href="?variant=3" data-variant-button="3">03</a>
+      <a href="?variant=1" data-variant-button="1" aria-current="page">Cascade</a>
+      <a href="?variant=2" data-variant-button="2">Workbench</a>
+      <a href="?variant=3" data-variant-button="3">Converge</a>
     </div>
     <button class="motion-toggle" type="button" aria-label="Toggle static motion preview" aria-pressed="false">
       <span class="motion-dot" aria-hidden="true"></span>
