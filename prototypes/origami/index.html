@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Structural Origami Visual System Prototype</title>
+  <link rel="stylesheet" href="prototype.css">
+</head>
+<body data-variant="1">
+  <a class="skip-link" href="#main">Skip to prototype</a>
+
+  <header class="site-chrome">
+    <a class="wordmark" href="#hero" aria-label="Brett Reifers, home">
+      <span>BR</span>
+      <span class="wordmark-name">Brett Reifers</span>
+    </a>
+    <p>Wayfinder prototype <span aria-hidden="true">/</span> Visual grammar</p>
+  </header>
+
+  <aside class="story-rail" aria-label="Future story rail preview">
+    <span class="rail-line" aria-hidden="true"></span>
+    <a class="rail-step is-current" href="#hero"><span>01</span> Thesis</a>
+    <a class="rail-step" href="#proof"><span>02</span> Work</a>
+    <a class="rail-step" href="#system"><span>03</span> System</a>
+  </aside>
+
+  <main id="main">
+    <p class="axis-caption">
+      <span>Comparison axis</span>
+      <strong id="variant-axis">Axial fold: one cobalt spine turns ambiguity into evidence.</strong>
+    </p>
+    <section class="scene hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">AI product leader <span>Agent-systems builder</span></p>
+        <h1 id="hero-title">From ambiguity<br>to <em>evidence.</em></h1>
+        <p class="thesis">I turn uncertain agentic-AI opportunities into useful products, operating systems, and proof.</p>
+        <a class="text-link" href="#proof">See the work <span aria-hidden="true">↘</span></a>
+      </div>
+
+      <div class="fold-stage" aria-hidden="true">
+        <span class="plane plane-a"></span>
+        <span class="plane plane-b"></span>
+        <span class="plane plane-c"></span>
+        <span class="plane plane-d"></span>
+        <span class="plane plane-e"></span>
+        <span class="fold-edge fold-edge-a"></span>
+        <span class="fold-edge fold-edge-b"></span>
+        <span class="cobalt-spine"></span>
+        <span class="system-node node-input">Ambiguity</span>
+        <span class="system-node node-decision">Decision</span>
+        <span class="system-node node-proof">Evidence</span>
+      </div>
+
+      <p class="scene-index" aria-hidden="true">01 / 03</p>
+    </section>
+
+    <section class="scene proof" id="proof" aria-labelledby="proof-title">
+      <div class="proof-copy">
+        <p class="eyebrow">Selected work <span>Delivered</span></p>
+        <h2 id="proof-title">The fold becomes a frame for proof.</h2>
+        <p>Media sits inside the structure, never behind a readability wash.</p>
+      </div>
+
+      <figure class="media-fold">
+        <div class="media-plane">
+          <img src="../../assets/images/hero/content-engine-hero-1280x720.webp"
+               alt="A dark interface showing a structured AI content pipeline">
+        </div>
+        <figcaption>
+          <span>Content Engine</span>
+          <span>System / 2026</span>
+        </figcaption>
+      </figure>
+
+      <div class="proof-plane" aria-hidden="true"></div>
+      <p class="scene-index" aria-hidden="true">02 / 03</p>
+    </section>
+
+    <section class="scene system" id="system" aria-labelledby="system-title">
+      <div class="system-copy">
+        <p class="eyebrow">Grammar, not decoration</p>
+        <h2 id="system-title">Every edge has a job.</h2>
+      </div>
+      <dl class="rule-grid">
+        <div>
+          <dt>Mountain</dt>
+          <dd>Near-black edge. Separates narrative layers.</dd>
+        </div>
+        <div>
+          <dt>Valley</dt>
+          <dd>Warm-grey edge. Connects related evidence.</dd>
+        </div>
+        <div>
+          <dt>Active fold</dt>
+          <dd>Cobalt edge. Marks the current decision.</dd>
+        </div>
+      </dl>
+      <p class="scene-index" aria-hidden="true">03 / 03</p>
+    </section>
+  </main>
+
+  <nav class="prototype-switcher" aria-label="Prototype directions">
+    <div class="switcher-heading">
+      <span>Direction</span>
+      <strong id="variant-name" aria-live="polite">01 Ridge</strong>
+    </div>
+    <div class="variant-buttons">
+      <a href="?variant=1" data-variant-button="1" aria-current="page">01</a>
+      <a href="?variant=2" data-variant-button="2">02</a>
+      <a href="?variant=3" data-variant-button="3">03</a>
+    </div>
+    <button class="motion-toggle" type="button" aria-label="Toggle static motion preview" aria-pressed="false">
+      <span class="motion-dot" aria-hidden="true"></span>
+      <span class="motion-label">Motion on</span>
+    </button>
+  </nav>
+
+  <script src="prototype.js"></script>
+</body>
+</html>
